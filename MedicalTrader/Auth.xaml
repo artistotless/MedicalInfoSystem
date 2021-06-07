@@ -1,0 +1,65 @@
+﻿<Window x:Class="MedicalTrader.Auth"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedicalTrader"
+        mc:Ignorable="d"
+        Title="Вход в систему" Height="350" Width="350"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize"
+        >
+
+
+    <Grid>
+
+
+
+        <Grid Background="#F5F5F5">
+            <StackPanel VerticalAlignment="Center"  MaxWidth="200px" Margin="20 30 20 20">
+                <TextBlock FontWeight="DemiBold" Margin="0 0 0 15" FontSize="16"
+  Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+  Text="Авторизация" />
+
+                <TextBox Margin="0 0 0 25"
+  x:Name="loginField"
+  materialDesign:HintAssist.Hint="Login"
+  materialDesign:HintAssist.HelperText="Введите ваш логин">
+                    <TextBox.Text>
+                        <Binding
+      Path="Name"
+      UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                
+         
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <PasswordBox Margin="0 0 0 40"
+  x:Name="passwordField"
+  materialDesign:HintAssist.Hint="Password"
+  materialDesign:TextFieldAssist.HasClearButton="True"
+  materialDesign:HintAssist.HelperText="Введите ваш пароль" />
+
+                <Button Click="Login_Click"
+  Style="{StaticResource MaterialDesignOutlinedButton}"
+  Content="Войти" />
+            </StackPanel>
+
+        </Grid>
+
+
+
+
+
+    </Grid>
+
+</Window>

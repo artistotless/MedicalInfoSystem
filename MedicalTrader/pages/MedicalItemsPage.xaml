@@ -1,0 +1,207 @@
+﻿<Page x:Class="MedicalTrader.MedicalItemsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedicalTrader"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MedicalItemsPage">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="68px"/>
+            <RowDefinition Height="70px"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="68px"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock  FontWeight="Light"  Grid.Row="0" Grid.Column="0" FontSize="20" Margin="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}"  Text="Список мед. препаратов" />
+
+
+        <ToolBarTray Grid.Row="1" Grid.Column="0">
+            <ToolBar
+    Style="{DynamicResource MaterialDesignToolBar}"
+    ClipToBounds="False">
+                <Button
+      ToolTip="Follow me on Twitter"
+     
+      Content="{materialDesign:PackIcon Kind=Twitter}" />
+                <Button
+      ToolTip="Save"
+      Content="{materialDesign:PackIcon Kind=ContentSave}" />
+                <Separator />
+                <Button
+      Command="Cut"
+      ToolTip="Cut"
+      ToolBar.OverflowMode="AsNeeded"
+      Content="{materialDesign:PackIcon Kind=ContentCut}" />
+                <Button
+      Command="Copy"
+      ToolTip="Copy that stuff"
+      ToolBar.OverflowMode="AsNeeded"
+      Content="{materialDesign:PackIcon Kind=ContentCopy}" />
+                <Separator />
+                <Button
+      Command="Paste"
+      ToolTip="Paste some stuff"
+      ToolBar.OverflowMode="AsNeeded"
+      Content="{materialDesign:PackIcon Kind=ContentPaste}" />
+                <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and
+                   manually apply the button style -->
+                <materialDesign:Badged
+      ToolBar.OverflowMode="AsNeeded"
+      Badge="{materialDesign:PackIcon Alert}"
+      CornerRadius="5">
+                    <Button
+        ToolTip="Badge it up!"
+        Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+        Content="{materialDesign:PackIcon Kind=AirplaneTakeoff}" />
+                </materialDesign:Badged>
+                <Separator />
+                <ListBox>
+                    <ListBoxItem
+        ToolTip="This is a lonley toggle with TextBlock instead of icon">
+                        <TextBlock
+          Text="W" />
+                    </ListBoxItem>
+                </ListBox>
+                <Separator />
+                <ListBox
+      SelectedIndex="0">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock
+            Text="MaterialDesignToolToggleFlatListBox" />
+                            <TextBlock
+            Text="Exclusive selection" />
+                            <TextBlock
+            Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                    <ListBoxItem
+        Content="{materialDesign:PackIcon Kind=FormatAlignLeft}" />
+                    <ListBoxItem
+        Content="{materialDesign:PackIcon Kind=FormatAlignCenter}" />
+                    <ListBoxItem
+        Content="{materialDesign:PackIcon Kind=FormatAlignRight}" />
+                    <ListBoxItem
+        Content="{materialDesign:PackIcon Kind=FormatAlignJustify}" />
+                </ListBox>
+                <Separator />
+                <ListBox
+      SelectionMode="Extended">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock
+            Text="MaterialDesignToolToggleListBox" />
+                            <TextBlock
+            Text="Multiple selection" />
+                            <TextBlock
+            Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                    <ListBoxItem
+        Content="{materialDesign:PackIcon Kind=FormatBold}" />
+                    <ListBoxItem
+        Content="{materialDesign:PackIcon Kind=FormatItalic}" />
+                    <ListBoxItem
+        Content="{materialDesign:PackIcon Kind=FormatUnderline}" />
+                </ListBox>
+                <Separator />
+                <Label
+      Content="Font size:"
+      VerticalAlignment="Center" />
+                <ComboBox>
+                    <ComboBoxItem
+        Content="10" />
+                    <ComboBoxItem
+        IsSelected="True"
+        Content="12" />
+                    <ComboBoxItem
+        Content="14" />
+                    <ComboBoxItem
+        Content="16" />
+                </ComboBox>
+                <CheckBox
+      Content="Check" />
+                <Button
+      ToolTip="Take a nap"
+      ToolBar.OverflowMode="Always"
+      Content="{materialDesign:PackIcon Kind=Hotel}" />
+                <RadioButton
+      GroupName="XXX"
+      Content="Radio" />
+                <RadioButton
+      GroupName="XXX"
+      Content="Ga Ga" />
+                <Separator />
+                <RadioButton
+      GroupName="YYY"
+      Style="{DynamicResource MaterialDesignToolRadioButton}"
+      Content="{materialDesign:PackIcon Kind=Radio}" />
+                <RadioButton
+      GroupName="YYY"
+      Style="{DynamicResource MaterialDesignToolRadioButton}"
+      Content="{materialDesign:PackIcon Kind=EmoticonPoop}" />
+                <Separator />
+                <ToggleButton />
+            </ToolBar>
+        </ToolBarTray>
+
+
+
+        <Border  Grid.Row="2" Grid.Column="0" >
+            <DataGrid AutoGenerateColumns="False" x:Name="tableDrugs"   ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto">>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Серия" Binding="{Binding Path=text}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Партия" Binding="{Binding Path=initialItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Номенклатура" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Изготовитель" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Страна" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Зарезервировано" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Срок годности" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Номер регистрационного удостоверения" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+        <WrapPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+            <TextBlock  FontWeight="Light"   FontSize="20" Margin="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}"  Text="ГРЛС" />
+            <Button Click="UpdateGRLS"
+  materialDesign:RippleAssist.Feedback="#FF8CEE81" Style="{StaticResource MaterialDesignOutlinedButton}"
+  ToolTip="MaterialDesignOutlinedButton"
+  Content="Обновить базу" BorderBrush="#FF60C756" Foreground="#FF61C756" />
+        </WrapPanel>
+        <Border Grid.Row="4" Grid.Column="0">
+            <DataGrid AutoGenerateColumns="False" x:Name="tableGRLSdrugs"    ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto">>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Номер удостоверения" Binding="{Binding Path=id}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Дата регистрации" Binding="{Binding Path=text}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Дата окончания рег. удостоверения" Binding="{Binding Path=initialItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Дата аннулирования регистрационного удостоверения" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Юридическое лицо, на имя которого выдано регистрационное удостоверение" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Торговое наименование лекарственного препарата" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Международное непатентованное или химическое наименование" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Формы выпуска" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Сведения о стадиях производства" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Штрих-коды потребительской упаковки" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Нормативная документация" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Фармако-терапевтическая группа" Binding="{Binding Path=nextItemIndex}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+
+
+    </Grid>
+</Page>
