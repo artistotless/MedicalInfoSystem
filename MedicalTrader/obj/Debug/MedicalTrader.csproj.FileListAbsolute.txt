@@ -332,3 +332,4 @@ D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\MedicalTrader.exe
 D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\MedicalTrader.pdb
 D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\pages\MedicalItemsPage.g.cs
 D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\pages\MedicalItemsPage.baml
+D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\MedicalTrader.csprojAssemblyReference.cache

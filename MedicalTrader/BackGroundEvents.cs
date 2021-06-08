@@ -12,17 +12,15 @@ namespace MedicalTrader
     {
         public static event Loading OnShowLoading;
         public static event Loading OnHideLoading;
-        private static int count = 0;
+      
 
         public static void ShowLoading(string msg)
         {
             if (OnShowLoading != null)
             {
-                count++;
-                if (count > 0)
-                {
+              
                     OnShowLoading(msg);
-                }
+                
             }
         }
 
@@ -30,11 +28,9 @@ namespace MedicalTrader
         {
             if (OnHideLoading != null)
             {
-                count--;
-                if (count <= 0)
-                {
+              
                     OnHideLoading(string.Empty);
-                }
+                
             }
         }
 

@@ -24,6 +24,11 @@ namespace MedicalTrader.helpers
             {
                 BackGroundEvents.ShowLoading("Загрузка номенклатуры с ГРЛП (grls.rosminzdrav.ru)...");
 
+                if (File.Exists(Settings.GRLP_PATH + Settings.GRLP_ZIP_NAME))
+                {
+                    return Settings.GRLP_PATH + Settings.GRLP_ZIP_NAME;
+                }
+
                 string url = Settings.GRLP_URL +"/grls.aspx";
                 //Скачиваем html-разметку страницы
                 string text = client.DownloadString(url);

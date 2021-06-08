@@ -84,7 +84,7 @@ namespace MedicalTrader
 
         public async void Parse()
         {
-              await new CheckerLicense().CheckLicenceAsync("0721018808");
+             // await new CheckerLicense().CheckLicenceAsync("0721018808");
         }
 
 
