@@ -14,7 +14,7 @@ namespace MedicalTrader
         public string nomenclature { get; set; }
         public string country { get; set; }
         public string expirationDate { get; set; }
-        public Warehouse warehouse { get; set; }
+        public int warehouse { get; set; }
         public int series { get; set; }
         public int price { get; set; }
         public int party { get; set; }
@@ -27,7 +27,7 @@ namespace MedicalTrader
         {
         }
 
-        public Drug(int id, string nomenclature, string manufacturer, string country, string expirationDate, Warehouse warehouse, int series, int quantity, int availableQuantity,string certNumber)
+        public Drug(int id, string nomenclature, string manufacturer, string country, string expirationDate, int warehouse, int series, int quantity, int availableQuantity,string certNumber)
         {
             this.id = id;
             this.manufacturer = manufacturer;

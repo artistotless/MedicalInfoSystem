@@ -100,11 +100,11 @@
             <Border  Height="auto" HorizontalAlignment="Right" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
 
-                    <ProgressBar Visibility="Visible" x:Name="indicatorStatus" 
+                    <ProgressBar Visibility="Hidden" x:Name="indicatorStatus" 
   Style="{StaticResource MaterialDesignCircularProgressBar}"
   Value="0"
   IsIndeterminate="True" Foreground="#FF9C64FF" />
-                    <TextBlock Style="{StaticResource MaterialDesignCaptionTextBlock}"  x:Name ="statusLabel"  Margin="10 10 30 10" Text="Статус" Foreground="#FFA49F9F"/>
+                    <TextBlock  Style="{StaticResource MaterialDesignCaptionTextBlock}"  x:Name ="statusLabel"  Margin="10 10 30 10" Text="" Foreground="#FFA49F9F"/>
                 </StackPanel>
 
             </Border>

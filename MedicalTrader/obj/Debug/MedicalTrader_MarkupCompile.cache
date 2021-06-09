@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\
+E:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\obj\Debug\
 MedicalTrader
 none
 false
 DEBUG;TRACE
-D:\GitHub\MedicalInfoSystem\MedicalTrader\App.xaml
+E:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\App.xaml
 9146313020
 
 31-1478657658
-1411999726104
+141-604061940
 Auth.xaml;pages\DocumentsPage.xaml;MainWindow.xaml;pages\MedicalItemsPage.xaml;pages\PlanningPage .xaml;pages\ProvidersPage.xaml;pages\PurchasesPage.xaml;pages\SalesPage.xaml;pages\WarehousesPage.xaml;
 
 False

@@ -1,5 +1,6 @@
 ﻿using MedicalTrader.helpers;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
@@ -15,11 +16,15 @@ namespace MedicalTrader
     public partial class MedicalItemsPage : Page
     {
         private DBWrapper db;
+        private List<GrlpDrug> tempGrlp;
+        private List<Drug> tempDrugs;
         public MedicalItemsPage()
         {
             InitializeComponent();
             db = new DBWrapper();
 
+            tableDrugs.Items.Clear();
+            tableDrugs.ItemsSource = db.Drugs.ToList();
             tableGRLSdrugs.Items.Clear();
             tableGRLSdrugs.ItemsSource = db.GrlpDrugs.ToList();
 
@@ -90,6 +95,167 @@ namespace MedicalTrader
             Process.Start(excelFile);
             BackGroundEvents.HideLoading();
 
+        }
+
+        private void SearchForTableGrlp(object sender, RoutedEventArgs e)
+        {
+
+            string query = grlpSearchField.Text;
+            var chip = new MaterialDesignThemes.Wpf.Chip() { IsDeletable = true, Content = query };
+            chip.DeleteClick += Chip_DeleteClick;
+            toolbarGrlp.Items.Add(chip);
+
+
+            foreach (var item in grlpSearchType.Items)
+            {
+
+                if (((ComboBoxItem)item).IsSelected)
+                {
+                    switch (((ComboBoxItem)item).Content)
+                    {
+                        case "Наименованию":
+
+
+
+                            tableGRLSdrugsResults.Items.Clear();
+                            foreach (GrlpDrug obj in tableGRLSdrugs.ItemsSource)
+                            {
+
+
+                                if (obj.name.ToUpper().Contains(query.ToUpper()))
+                                {
+                                    ((Border)tableGRLSdrugsResults.Parent).Visibility = Visibility.Visible;
+
+
+                                    tableGRLSdrugsResults.Items.Add((GrlpDrug)obj);
+
+
+                                }
+
+                            }
+
+                            //tableGRLSdrugsResults.ItemsSource = temp;
+                            break;
+
+                        case "Номеру удостоверения":
+
+
+                            foreach (GrlpDrug obj in tableGRLSdrugs.ItemsSource)
+                            {
+
+
+                                if (obj.certNumber.ToUpper().Contains(query.ToUpper()))
+
+                                {
+
+
+                                    ((Border)tableGRLSdrugsResults.Parent).Visibility = Visibility.Visible;
+
+
+                                    tableGRLSdrugsResults.Items.Add((GrlpDrug)obj);
+
+
+                                }
+
+                            }
+
+                            break;
+
+
+                    }
+
+                }
+            }
+        }
+
+        private void Chip_DeleteClick(object sender, RoutedEventArgs e)
+        {
+            tableGRLSdrugsResults.Items.Clear();
+            tableGRLSdrugsResults.ItemsSource = null;
+            ((Border)tableGRLSdrugsResults.Parent).Visibility = Visibility.Hidden;
+            ;
+            toolbarGrlp.Items.Remove(sender);
+
+        }
+
+        private void SearchForTableMedicalItems(object sender, RoutedEventArgs e)
+        {
+            string query = SearchField.Text;
+            foreach (var item in tableDrugs.Items)
+            {
+
+                if (((ComboBoxItem)item).IsSelected)
+                {
+                    switch (((ComboBoxItem)item).Content)
+                    {
+                        case "Наименованию":
+
+
+                            foreach (var obj in tableDrugs.Items)
+                            {
+
+
+                                if (((Drug)obj).nomenclature == query)
+                                {
+                                    tempDrugs = db.Drugs.ToList();
+                                    var temp = new List<Drug>();
+                                    temp.Add((Drug)obj);
+                                    tableDrugs.ItemsSource = temp;
+                                }
+
+                            }
+
+
+                            break;
+
+                        case "Партии":
+
+                            foreach (var obj in tableDrugs.Items)
+                            {
+
+
+                                if (((Drug)obj).party.ToString() == query)
+                                {
+                                    tempDrugs = db.Drugs.ToList();
+                                    var temp = new List<Drug>();
+                                    temp.Add((Drug)obj);
+                                    tableDrugs.ItemsSource = temp;
+                                }
+
+                            }
+
+                            break;
+
+                        case "Серии":
+
+                            foreach (var obj in tableDrugs.Items)
+                            {
+
+
+                                if (((Drug)obj).series.ToString() == query)
+                                {
+                                    tempDrugs = db.Drugs.ToList();
+                                    var temp = new List<Drug>();
+                                    temp.Add((Drug)obj);
+                                    tableDrugs.ItemsSource = temp;
+                                }
+
+                            }
+
+                            break;
+                    }
+
+                }
+            }
+        }
+
+
+
+
+
+        private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("1");
         }
     }
 }

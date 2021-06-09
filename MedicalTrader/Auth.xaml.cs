@@ -33,7 +33,7 @@ namespace MedicalTrader
                 var user = AuthSystem.Login(loginField.Text, passwordField.Password);
                 if (user != null)
                 {
-                //   new MainWindow(this, user).Show();
+                //new MainWindow(this, user).Show();
                 }
                 else { MessageBox.Show("Введите валидный пароль и логин!"); }
             }

@@ -1,17 +1,6 @@
 ﻿
-using ExcelDataReader;
-using Ionic.Zip;
-using MedicalTrader.helpers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -39,7 +28,7 @@ namespace MedicalTrader
             InitializeComponent();
             //lastPage.Close();
 
-            //accountBtn.Header = "admin";
+            //accountBtn.Header = authUser.login;
 
 
             Color fromColor = new Color() { R = 85, G = 85, B = 238, A = 255 };
