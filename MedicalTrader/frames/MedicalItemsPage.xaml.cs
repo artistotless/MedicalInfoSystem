@@ -327,11 +327,11 @@ namespace MedicalTrader
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OpenAddDrugPageFromGrlp(object sender, RoutedEventArgs e)
         {
             new CustomWindow(
                new other.WindowConfig("Добавление медицинского препарата", 700, 550, ResizeMode.NoResize),
-               new MedicalItemsAddPage(((Button)sender).DataContext.ToString())
+               new MedicalItemsAddPage(((Button)sender).DataContext.ToString(), tableDrugs)
                ).Show();
          
 
@@ -368,7 +368,7 @@ namespace MedicalTrader
         {
             new CustomWindow(
                 new other.WindowConfig("Добавление медицинского препарата", 700, 550, ResizeMode.NoResize),
-                new MedicalItemsAddPage()
+                new MedicalItemsAddPage(tableDrugs)
                 ).Show();
         }
 

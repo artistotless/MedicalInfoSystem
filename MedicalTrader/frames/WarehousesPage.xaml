@@ -11,36 +11,99 @@
 
     <Page.Resources>
         <Style x:Key="listboxStyle" BasedOn="{StaticResource MaterialDesignListBoxItem}" TargetType="ListBoxItem">
-         
+
             <Setter Property="Background" Value="#FFF9F9F9"></Setter>
             <Setter Property="materialDesign:RippleAssist.Feedback" Value="#FFF9F9F9"></Setter>
             <Setter Property="FontFamily" Value="Roboto"></Setter>
-           
-            
-                <Setter Property="Margin" Value="1"></Setter>
-                <Setter Property="Padding" Value="10"></Setter>
-                <Setter Property="materialDesign:RippleAssist.IsDisabled"  Value="true"></Setter>
-            
-          
+
+
+            <Setter Property="Margin" Value="1"></Setter>
+            <Setter Property="Padding" Value="10"></Setter>
+            <Setter Property="materialDesign:RippleAssist.IsDisabled"  Value="true"></Setter>
+
+
         </Style>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="68px"/>
+            <RowDefinition Height="64px"/>
+            <RowDefinition Height="55px"/>
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <!--<ColumnDefinition MaxWidth="600px"/>-->
+           
         </Grid.ColumnDefinitions>
+        <TextBlock   FontWeight="Light"  Grid.Row="0" Grid.Column="0" FontSize="20" Margin="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}"  Text="Список складов" />
 
-        <Button Click="AddNewWarehouse" HorizontalAlignment="Left" Margin="20 0 0 0" MaxWidth="200px" x:Name="addWarehouse" 
+        <ToolBarTray Grid.Row="1" Grid.Column="0">
+            <ToolBar x:Name="toolbarWHs"
+    Style="{DynamicResource MaterialDesignToolBar}"
+    ClipToBounds="False">
+
+
+             
+               
+                <Button Click="RefreshWarehouseTable"
+      ToolTip="Обновить"
+      Content="{materialDesign:PackIcon Kind=Refresh}" Foreground="#99000000" />
+                <Separator />
+                <Button Click="AddNewWarehouse" HorizontalAlignment="Left" Margin="20 0 8 0" MaxWidth="200px" x:Name="addWarehouse" 
   materialDesign:RippleAssist.Feedback="#FF7FD4EE" Style="{StaticResource MaterialDesignOutlinedButton}"
   ToolTip="Добавить новый склад"
   Content="Добавить склад" BorderBrush="#FF56ADC7" Foreground="#FF56ADC7" />
+                <Separator />
+                <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and
+                   manually apply the button style -->
+                <ListBox/>
+                <ListBox
+      SelectedIndex="0">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock
+            Text="MaterialDesignToolToggleFlatListBox" />
+                            <TextBlock
+            Text="Exclusive selection" />
+                            <TextBlock
+            Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                </ListBox>
+                <ListBox
+      SelectionMode="Extended">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock
+            Text="MaterialDesignToolToggleListBox" />
+                            <TextBlock
+            Text="Multiple selection" />
+                            <TextBlock
+            Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                </ListBox>
+
+                
+                <TextBox x:Name="SearchField"
+            Grid.Column="1"
+            Margin="8 0 0 0"
+                    Height="30px"
+            materialDesign:HintAssist.Hint="Поиск.."
+            
+            BorderThickness="0"
+            MinWidth="200"
+            VerticalAlignment="Center" />
+                <Button Click="SearchForTableWareHouses" x:Name="searchBtn"
+  Content="{materialDesign:PackIcon Search}"
+  ToolTip="Поиск" />
+                <Separator />
+            </ToolBar>
+        </ToolBarTray>
+
         
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
 
             <WrapPanel x:Name="whList">
 

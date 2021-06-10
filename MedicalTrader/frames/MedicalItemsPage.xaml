@@ -218,7 +218,7 @@
                         <DataGridTemplateColumn MaxWidth="86" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button ToolTip="Добавить в список товаров" Content="{materialDesign:PackIcon Plus}" DataContext="{Binding Path=certNumber}" Style="{StaticResource MaterialDesignOutlinedButton}" Click="Button_Click"/>
+                                    <Button ToolTip="Добавить в список товаров" Content="{materialDesign:PackIcon Plus}" DataContext="{Binding Path=certNumber}" Style="{StaticResource MaterialDesignOutlinedButton}" Click="OpenAddDrugPageFromGrlp"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
 

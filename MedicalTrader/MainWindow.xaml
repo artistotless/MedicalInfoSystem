@@ -33,10 +33,6 @@
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="#FF858585"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
-
-
-
-
         </Style>
     </Window.Resources>
 

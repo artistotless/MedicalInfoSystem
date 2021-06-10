@@ -10,8 +10,10 @@ namespace MedicalTrader
     /// </summary>
     public partial class MedicalItemsAddPage : Page
     {
-        public MedicalItemsAddPage()
+        private DataGrid mainDataGrid;
+        public MedicalItemsAddPage(DataGrid dataGrid = null)
         {
+            mainDataGrid = dataGrid;
             InitializeComponent();
             initComboBox();
         }
@@ -22,10 +24,11 @@ namespace MedicalTrader
                 warehouse.Items.Add(item.name);
             }
         }
-        public MedicalItemsAddPage(string certNumber)
+        public MedicalItemsAddPage(string certNumber, DataGrid dataGrid = null)
         {
             InitializeComponent();
             initComboBox();
+            mainDataGrid = dataGrid;
             this.certNumber.Text = certNumber;
             AutoFillBtn_Click(null, null);
         }
@@ -52,6 +55,10 @@ namespace MedicalTrader
             DBConnector.Db().Drugs.Add(newDrug);
 
             DBConnector.Db().SaveChanges();
+            BackGroundEvents.ShowLoading("Обновление таблицы..");
+            if (DBConnector.Db().Drugs.ToList().Count <= 0) { return; }
+            //tableDrugs.Items.Clear();
+            mainDataGrid.ItemsSource = DBConnector.Db().Drugs.ToList();
             BackGroundEvents.HideLoading();
 
         }

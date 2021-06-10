@@ -20,15 +20,18 @@ namespace MedicalTrader
     /// </summary>
     public partial class WarehousesAddPage : Page
     {
-        public WarehousesAddPage()
+        private WarehousesPage mainPage;
+        public WarehousesAddPage(WarehousesPage page)
         {
             InitializeComponent();
-
+            mainPage = page;
             var employee = DBConnector.Db().Users.ToList();
             foreach (var item in employee)
             {
                 employeeList.Items.Add(item.fullName);
             }
+
+            
 
             //Binding bind = new Binding();
             //  bind.Source = employee;
@@ -52,6 +55,7 @@ namespace MedicalTrader
 
             DBConnector.Db().SaveChanges();
             BackGroundEvents.HideLoading();
+            mainPage.RefreshWarehouseTable();
         }
     }
 }
