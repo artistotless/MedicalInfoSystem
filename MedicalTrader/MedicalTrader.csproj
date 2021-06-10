@@ -139,15 +139,31 @@
     </Compile>
     <Compile Include="BackGroundEvents.cs" />
     <Compile Include="BuyerLicense.cs" />
+    <Compile Include="CustomWindow.xaml.cs">
+      <DependentUpon>CustomWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="dbClasses\Client.cs" />
     <Compile Include="dbClasses\Document.cs" />
+    <Compile Include="dbClasses\FarmGroup.cs" />
     <Compile Include="dbClasses\GrlpDrug.cs" />
     <Compile Include="dbClasses\Provider.cs" />
     <Compile Include="dbClasses\Purchase.cs" />
     <Compile Include="dbClasses\Sale.cs" />
     <Compile Include="dbClasses\User.cs" />
+    <Compile Include="frames\MedicalItemsAddPage.xaml.cs">
+      <DependentUpon>MedicalItemsAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frames\WarehousesAddPage.xaml.cs">
+      <DependentUpon>WarehousesAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="other\Role.cs" />
+    <Compile Include="uiElements\warehouseInfo.xaml.cs">
+      <DependentUpon>warehouseInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="helpers\AuthSystem.cs" />
+    <Compile Include="helpers\DBConnector.cs" />
     <Compile Include="helpers\DBWrapper.cs" />
-    <Compile Include="pages\DocumentsPage.xaml.cs">
+    <Compile Include="frames\DocumentsPage.xaml.cs">
       <DependentUpon>DocumentsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="helpers\CheckerLicense.cs" />
@@ -156,30 +172,50 @@
     <Compile Include="helpers\Settings.cs" />
     <Compile Include="helpers\ZipWrapper.cs" />
     <Compile Include="LicenceApiParameters.cs" />
-    <Compile Include="pages\MedicalItemsPage.xaml.cs">
+    <Compile Include="frames\MedicalItemsPage.xaml.cs">
       <DependentUpon>MedicalItemsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\PlanningPage .xaml.cs">
+    <Compile Include="frames\PlanningPage .xaml.cs">
       <DependentUpon>PlanningPage .xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\ProvidersPage.xaml.cs">
+    <Compile Include="frames\ProvidersPage.xaml.cs">
       <DependentUpon>ProvidersPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\PurchasesPage.xaml.cs">
+    <Compile Include="frames\PurchasesPage.xaml.cs">
       <DependentUpon>PurchasesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\SalesPage.xaml.cs">
+    <Compile Include="frames\SalesPage.xaml.cs">
       <DependentUpon>SalesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="dbClasses\Warehouse.cs" />
-    <Compile Include="pages\WarehousesPage.xaml.cs">
+    <Compile Include="frames\WarehousesPage.xaml.cs">
       <DependentUpon>WarehousesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="other\WindowConfig.cs" />
+    <Compile Include="uiElements\warehouseItem.xaml.cs">
+      <DependentUpon>warehouseItem.xaml</DependentUpon>
     </Compile>
     <Page Include="Auth.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\DocumentsPage.xaml">
+    <Page Include="CustomWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frames\DocumentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frames\MedicalItemsAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frames\WarehousesAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uiElements\warehouseInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,27 +232,31 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="pages\MedicalItemsPage.xaml">
+    <Page Include="frames\MedicalItemsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\PlanningPage .xaml">
+    <Page Include="frames\PlanningPage .xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\ProvidersPage.xaml">
+    <Page Include="frames\ProvidersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\PurchasesPage.xaml">
+    <Page Include="frames\PurchasesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\SalesPage.xaml">
+    <Page Include="frames\SalesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="pages\WarehousesPage.xaml">
+    <Page Include="frames\WarehousesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uiElements\warehouseItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -263,9 +303,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="uiElements\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

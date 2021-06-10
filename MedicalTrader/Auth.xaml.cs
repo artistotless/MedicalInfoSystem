@@ -20,9 +20,15 @@ namespace MedicalTrader
     /// </summary>
     public partial class Auth : Window
     {
-        public Auth()
+        public Auth(Window lastWindow = null)
         {
 
+            InitializeComponent();
+            if (lastWindow != null) { lastWindow.Close(); }
+        }
+
+        public Auth()
+        {
             InitializeComponent();
         }
 
@@ -33,7 +39,7 @@ namespace MedicalTrader
                 var user = AuthSystem.Login(loginField.Text, passwordField.Password);
                 if (user != null)
                 {
-                //new MainWindow(this, user).Show();
+                    new MainWindow(this, user).Show();
                 }
                 else { MessageBox.Show("Введите валидный пароль и логин!"); }
             }

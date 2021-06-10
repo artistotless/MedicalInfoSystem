@@ -13,8 +13,7 @@
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
-     FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize"
-        >
+     FontFamily="{DynamicResource MaterialDesignFont}" ResizeMode="NoResize"        >
 
 
     <Grid>
@@ -36,8 +35,8 @@
       Path="Name"
       UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
-                                
-         
+
+
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>

@@ -1,0 +1,73 @@
+﻿<Page x:Class="MedicalTrader.WarehousesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedicalTrader"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="WarehousesPage">
+
+    <Page.Resources>
+        <Style x:Key="listboxStyle" BasedOn="{StaticResource MaterialDesignListBoxItem}" TargetType="ListBoxItem">
+         
+            <Setter Property="Background" Value="#FFF9F9F9"></Setter>
+            <Setter Property="materialDesign:RippleAssist.Feedback" Value="#FFF9F9F9"></Setter>
+            <Setter Property="FontFamily" Value="Roboto"></Setter>
+           
+            
+                <Setter Property="Margin" Value="1"></Setter>
+                <Setter Property="Padding" Value="10"></Setter>
+                <Setter Property="materialDesign:RippleAssist.IsDisabled"  Value="true"></Setter>
+            
+          
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="68px"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <!--<ColumnDefinition MaxWidth="600px"/>-->
+        </Grid.ColumnDefinitions>
+
+        <Button Click="AddNewWarehouse" HorizontalAlignment="Left" Margin="20 0 0 0" MaxWidth="200px" x:Name="addWarehouse" 
+  materialDesign:RippleAssist.Feedback="#FF7FD4EE" Style="{StaticResource MaterialDesignOutlinedButton}"
+  ToolTip="Добавить новый склад"
+  Content="Добавить склад" BorderBrush="#FF56ADC7" Foreground="#FF56ADC7" />
+        
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">
+
+            <WrapPanel x:Name="whList">
+
+            </WrapPanel>
+        </ScrollViewer>
+        <!--<ListBox Grid.Column="1" Grid.Row="1">
+            <ListBoxItem Style="{StaticResource listboxStyle}"  >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center">LG Nexus 5X</TextBlock>
+                    <Button Margin="20 0 0 0" Grid.Column="0" >Удалить</Button>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem Style="{StaticResource listboxStyle}" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center">LG Nexus 5X</TextBlock>
+                    <Button Margin="20 0 0 0" Grid.Column="0" >Удалить</Button>
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem Style="{StaticResource listboxStyle}"  >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center">LG Nexus 5X</TextBlock>
+                    <Button Margin="20 0 0 0" Grid.Column="0" >Удалить</Button>
+                </StackPanel>
+            </ListBoxItem>
+
+
+
+        </ListBox>-->
+    </Grid>
+</Page>

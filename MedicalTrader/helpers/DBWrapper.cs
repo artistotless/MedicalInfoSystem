@@ -14,6 +14,7 @@ namespace MedicalTrader
         public DbSet<Sale> Sales { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Warehouse> Warehouses { get; set; }
+        public DbSet<FarmGroup> FarmGroups { get; set; }
 
 
         public DBWrapper() : base("DefaultConnection")

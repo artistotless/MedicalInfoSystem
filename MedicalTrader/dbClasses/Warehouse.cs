@@ -12,16 +12,20 @@ namespace MedicalTrader
         public int id { get; set; }
         public string name { get; set; }
         public string region { get; set; }
-        public string adress { get; set; }
-        public User employee { get; set; }
+        public string address { get; set; }
+        public int employee { get; set; }
 
-        public Warehouse(int id, string name, string region, string adress, User employee)
+        public Warehouse(int id, string name, string region, string adress, int employee)
         {
             this.id = id;
             this.name = name;
             this.region = region;
-            this.adress = adress;
+            this.address = adress;
             this.employee = employee;
+        }
+
+        public Warehouse()
+        {
         }
 
         public override string ToString()

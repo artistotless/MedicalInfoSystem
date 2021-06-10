@@ -1,12 +1,17 @@
-﻿E:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\obj\Debug\GeneratedInternalTypeHelper.g.i.cs
-FE:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\App.xaml;;
-FE:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\Auth.xaml;;
-FE:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\pages\DocumentsPage.xaml;;
-FE:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\MainWindow.xaml;;
-FE:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\pages\MedicalItemsPage.xaml;;
-FE:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\pages\PlanningPage .xaml;;
-FE:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\pages\ProvidersPage.xaml;;
-FE:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\pages\PurchasesPage.xaml;;
-FE:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\pages\SalesPage.xaml;;
-FE:\GitHubRepos\MedicalInfoSystem-main\MedicalTrader\pages\WarehousesPage.xaml;;
+﻿D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\GeneratedInternalTypeHelper.g.i.cs
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\App.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\Auth.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\CustomWindow.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\frames\DocumentsPage.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\frames\MedicalItemsAddPage.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\frames\WarehousesAddPage.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\uiElements\warehouseInfo.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\MainWindow.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\frames\MedicalItemsPage.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\frames\PlanningPage .xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\frames\ProvidersPage.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\frames\PurchasesPage.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\frames\SalesPage.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\frames\WarehousesPage.xaml;;
+FD:\GitHub\MedicalInfoSystem\MedicalTrader\uiElements\warehouseItem.xaml;;
 

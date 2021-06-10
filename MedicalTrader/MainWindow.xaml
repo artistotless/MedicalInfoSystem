@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicalTrader"
         mc:Ignorable="d"
-        Title="---" Height="554.628" Width="800"
+        Title="Medical Trader" Height="554.628" Width="800"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
@@ -70,7 +70,7 @@
 
                     <MenuItem Margin="0 10 0 0"  Header="Группа: "  x:Name="role" Icon="{materialDesign:PackIcon Kind=People}"></MenuItem>
 
-                    <MenuItem  Header="Выход"  InputGestureText="Ctrl+E"   Icon="{materialDesign:PackIcon Kind=ExitToApp}" />
+                    <MenuItem  Header="Выход"  Click="ExitFromAccount"  Icon="{materialDesign:PackIcon Kind=ExitToApp}" />
 
                     <Separator />
 
@@ -197,6 +197,16 @@
                         <materialDesign:PackIcon Grid.Column="0" Kind="Truck" Foreground="#FF939393" VerticalAlignment="Center" >
                         </materialDesign:PackIcon>
                         <Button Content="Поставщики" Click="NavigateToFrame" Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
+                    </Grid>
+                    <Grid Margin="10 0 10 0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <materialDesign:PackIcon Grid.Column="0" Kind="AccountGroup" Foreground="#FF939393" VerticalAlignment="Center" >
+                        </materialDesign:PackIcon>
+                        <Button Content="Клиенты" Click="NavigateToFrame"  Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
                     </Grid>
                     <Grid Margin="10 0 10 0">
 

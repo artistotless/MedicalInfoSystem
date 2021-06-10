@@ -16,7 +16,7 @@ namespace MedicalTrader.helpers
     {
         DataTable table;
         List<GrlpDrug> grlpList;
-
+        int rowsCompleteCount = 1;
         public async Task<List<GrlpDrug>> ExcelToSqlAsync(string excelFile)
         {
             return await Task.Run(() => ExcelToSql(excelFile));
@@ -44,6 +44,7 @@ namespace MedicalTrader.helpers
                     var result = reader.AsDataSet();
 
                     table = result.Tables[0];
+                    BackGroundEvents.HideLoading();
                     int i = 0;
                     grlpList = new List<GrlpDrug>(table.Rows.Count);
 
@@ -54,6 +55,7 @@ namespace MedicalTrader.helpers
 
 
                     Parallel.For(6, table.Rows.Count, CollectToArray);
+                    
                     BackGroundEvents.HideLoading();
                     return grlpList;
 
@@ -66,9 +68,10 @@ namespace MedicalTrader.helpers
 
         public void CollectToArray(int i)
         {
-            
-            //  BackGroundEvents.ShowLoading(string.Format("Обновление локальной БД...({0}/{1})", rowsCompleteCount.ToString(), table.Rows.Count.ToString()));
 
+
+            BackGroundEvents.ShowLoading(string.Format("Обновление локальной БД...({0}/{1})", rowsCompleteCount.ToString(), table.Rows.Count.ToString()));
+            rowsCompleteCount++;
             grlpList[i - 6] = new GrlpDrug(
                     0,
                     table.Rows[i][2].ToString(),
@@ -81,20 +84,14 @@ namespace MedicalTrader.helpers
                     table.Rows[i][9].ToString(),
                     table.Rows[i][10].ToString(),
                     table.Rows[i][11].ToString(),
-                    table.Rows[i][12].ToString(),
                     table.Rows[i][13].ToString(),
-                    table.Rows[i][14].ToString()
+                    table.Rows[i][14].ToString(),
+                    table.Rows[i][15].ToString()
+
+
 
                     );
             Task.Delay(10);
-
-
-
-            // BackGroundEvents.HideLoading();
-
-
-
-
 
 
         }

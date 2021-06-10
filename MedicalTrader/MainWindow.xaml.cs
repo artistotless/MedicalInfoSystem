@@ -1,5 +1,6 @@
 ﻿
 
+using MedicalTrader.other;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ namespace MedicalTrader
 
     public partial class MainWindow : Window
     {
+
         // 1 DocumentsPage()
         // 2 MedicalItemsPage()
         // 3 PlanningPage()
@@ -21,15 +23,15 @@ namespace MedicalTrader
 
         private Page[] pages = { null, new DocumentsPage(), new MedicalItemsPage(), new PlanningPage(), new ProvidersPage(), new PurchasesPage(), new SalesPage(), new WarehousesPage() };
         private ColorAnimation animation;
-        //Window lastPage = null;
-       // User authUser = null;
-        public MainWindow()
+        //Window lastPage = null, User authUser = null
+        public MainWindow(Window lastWindow = null, User authUser = null)
         {
             InitializeComponent();
-            //lastPage.Close();
+            if (lastWindow != null) { lastWindow.Close(); }
 
-            //accountBtn.Header = authUser.login;
-
+            accountBtn.Header = authUser.login;
+            role.Header = "Группа: " + (Role)authUser.role;
+            MainFrame.Content = pages[2];
 
             Color fromColor = new Color() { R = 85, G = 85, B = 238, A = 255 };
             Color toColor = new Color() { R = 85, G = 238, B = 120, A = 255 };
@@ -45,7 +47,7 @@ namespace MedicalTrader
             BackGroundEvents.OnShowLoading += BackGroundEvents_OnShowLoading;
             BackGroundEvents.OnHideLoading += BackGroundEvents_OnHideLoading;
 
-            
+
 
 
             Parse();
@@ -55,9 +57,14 @@ namespace MedicalTrader
 
         private void BackGroundEvents_OnShowLoading(string msg)
         {
-            Dispatcher.Invoke(() => indicatorStatus.Visibility = Visibility.Visible);
-            Dispatcher.Invoke(() => indicatorStatus.Foreground.BeginAnimation(SolidColorBrush.ColorProperty, animation));
-            Dispatcher.Invoke(() => statusLabel.Text = msg);
+            Dispatcher.Invoke(() =>
+            {
+                indicatorStatus.Visibility = Visibility.Visible;
+                indicatorStatus.Foreground.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+                statusLabel.Text = msg;
+            }
+            );
+
 
         }
 
@@ -73,7 +80,7 @@ namespace MedicalTrader
 
         public async void Parse()
         {
-             // await new CheckerLicense().CheckLicenceAsync("0721018808");
+            // await new CheckerLicense().CheckLicenceAsync("0721018808");
         }
 
 
@@ -109,6 +116,11 @@ namespace MedicalTrader
             }
 
 
+        }
+
+        private void ExitFromAccount(object sender, RoutedEventArgs e)
+        {
+            new Auth(this).Show();
         }
     }
 }
