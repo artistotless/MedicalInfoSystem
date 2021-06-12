@@ -16,5 +16,5 @@ D:\GitHub\MedicalInfoSystem\MedicalTrader\App.xaml
 1411999726104
 Auth.xaml;CustomWindow.xaml;frames\ClientsAddPage.xaml;frames\ClientsPage.xaml;frames\DocumentsPage.xaml;frames\MedicalItemsAddPage.xaml;frames\MedicalItemsEditPage.xaml;frames\UnitPage.xaml;frames\SettingsPage.xaml;frames\UsersPage.xaml;frames\WarehousesAddPage.xaml;uiElements\warehouseInfo.xaml;MainWindow.xaml;frames\MedicalItemsPage.xaml;frames\PlanningPage .xaml;frames\ProvidersPage.xaml;frames\PurchasesPage.xaml;frames\SalesPage.xaml;frames\WarehousesPage.xaml;uiElements\warehouseItem.xaml;
 
-True
+False
 

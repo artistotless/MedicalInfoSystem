@@ -24,7 +24,7 @@
 
 
             <ToolBarTray Grid.Row="1" Grid.Column="0">
-                <ToolBar x:Name="toolbarDrugs"
+                <ToolBar x:Name="toolbarClients"
     Style="{DynamicResource MaterialDesignToolBar}"
     ClipToBounds="False">
 
@@ -82,7 +82,7 @@
             Grid.Column="1"
             Margin="8 0 0 0"
                     Height="30px"
-            materialDesign:HintAssist.Hint="Поиск ..."
+            materialDesign:HintAssist.Hint="Поиск по названию/инн/описанию ..."
             
             BorderThickness="0"
             MinWidth="200"
@@ -122,28 +122,33 @@
                 </DataGrid>
 
             </Border>
-            <Border  Grid.Row="2" Grid.Column="0" Visibility="Hidden" >
-                <DataGrid AutoGenerateColumns="False" x:Name="tableDrugsResults"   ScrollViewer.CanContentScroll="True" 
+        <Border  Grid.Row="2" Grid.Column="0"  Visibility="Hidden">
+            <DataGrid IsReadOnly="True" AutoGenerateColumns="False" x:Name="tableClientsResults"   ScrollViewer.CanContentScroll="True" 
       ScrollViewer.VerticalScrollBarVisibility="Auto"
-      ScrollViewer.HorizontalScrollBarVisibility="Auto">>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Серия" Binding="{Binding Path=series }"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Партия" Binding="{Binding Path=party  }"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Наименование" Binding="{Binding Path=nomenclature }"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Склад" Binding="{Binding Path=warehouse  }"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Изготовитель" Binding="{Binding Path=manufacturer  }"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Страна" Binding="{Binding Path=country }"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=quantity  }"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Доступно" Binding="{Binding Path=availableQuantity }"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Цена" Binding="{Binding Path=price}"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Срок годности" Binding="{Binding Path=expirationDate }"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Номер регистрационного удостоверения" Binding="{Binding Path=certNumber }"></DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Border>
+      ScrollViewer.HorizontalScrollBarVisibility="Auto">
 
-        </Grid>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn MaxWidth="86" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button ToolTip="Редактировать" Content="{materialDesign:PackIcon Edit}" DataContext="{Binding Path=id}" Style="{StaticResource MaterialDesignOutlinedButton}" Click="EditSelectedClient"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Компания" Binding="{Binding Path=companyName }"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Представитель" Binding="{Binding Path=contactFace  }"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding Path=phone }"></DataGridTextColumn>
+                    <DataGridTextColumn Header="ИНН" Binding="{Binding Path=inn  }"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Адрес" Binding="{Binding Path=address  }"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Лицензия" Binding="{Binding Path=license  }"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Описание" Binding="{Binding Path=descr  }"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Border>
+       </Grid>
 
       
 </Page>
