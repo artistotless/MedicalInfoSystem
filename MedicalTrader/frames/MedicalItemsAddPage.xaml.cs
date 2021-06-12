@@ -11,6 +11,9 @@ namespace MedicalTrader
     public partial class MedicalItemsAddPage : Page
     {
         private DataGrid mainDataGrid;
+     
+
+        // Добавление препарата вручную
         public MedicalItemsAddPage(DataGrid dataGrid = null)
         {
             mainDataGrid = dataGrid;
@@ -24,6 +27,28 @@ namespace MedicalTrader
                 warehouse.Items.Add(item.name);
             }
         }
+
+
+
+        Drug GetDrugByFields(Drug drug)
+        {
+
+            drug.nomenclature = this.name.Text;
+            drug.manufacturer = this.manufacturer.Text;
+            drug.country = this.country.Text;
+            drug.expirationDate = this.expirationDate.Text;
+            var wh = DBConnector.Db().Warehouses.ToList().Where(w => w.name == this.warehouse.Text).FirstOrDefault();
+            drug.warehouse = wh != null ? wh.id : 0;
+            drug.series = int.Parse((string.IsNullOrEmpty(this.series.Text) ? "0" : this.series.Text));
+            drug.quantity = int.Parse((string.IsNullOrEmpty(this.quantity.Text) ? "0" : this.quantity.Text));
+            var temp = int.Parse((string.IsNullOrEmpty(available.Text) ? "0" : available.Text));
+
+            drug.availableQuantity = int.Parse((string.IsNullOrEmpty(available.Text) ? "0" : available.Text));
+            drug.certNumber = this.certNumber.Text;
+            //isEditMode = false;
+            return drug;
+        }
+        // Добавление препарата из ГРЛС
         public MedicalItemsAddPage(string certNumber, DataGrid dataGrid = null)
         {
             InitializeComponent();
@@ -31,28 +56,18 @@ namespace MedicalTrader
             mainDataGrid = dataGrid;
             this.certNumber.Text = certNumber;
             AutoFillBtn_Click(null, null);
+            //isEditMode = false;
         }
 
-        private void SaveDrug(object sender, System.Windows.RoutedEventArgs e)
+        // Редактирование препарата
+      
+
+        private void AddDrug(object sender, System.Windows.RoutedEventArgs e)
         {
+  
             BackGroundEvents.ShowLoading("Добавление препарата в БД...");
 
-
-
-            var name = this.name.Text;
-            var manufacturer = this.manufacturer.Text;
-            var country = this.country.Text;
-            var expirationDate = this.expirationDate.Text;
-            var wh = DBConnector.Db().Warehouses.ToList().Where(w => w.name == this.warehouse.Text).FirstOrDefault();
-            var warehouse = wh != null ? wh.id : 0;
-            var series = int.Parse((string.IsNullOrEmpty(this.series.Text) ? "0" : this.series.Text));
-            var quantity = int.Parse((string.IsNullOrEmpty(this.quantity.Text) ? "0" : this.quantity.Text));
-            var available = int.Parse((string.IsNullOrEmpty(this.available.Text) ? "0" : this.available.Text));
-            var certNumber = this.certNumber.Text;
-
-            var newDrug = new Drug(0, name, manufacturer, country, expirationDate, warehouse, series, quantity, available, certNumber);
-
-            DBConnector.Db().Drugs.Add(newDrug);
+            DBConnector.Db().Drugs.Add(GetDrugByFields(new Drug()));
 
             DBConnector.Db().SaveChanges();
             BackGroundEvents.ShowLoading("Обновление таблицы..");

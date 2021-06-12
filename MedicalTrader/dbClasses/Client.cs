@@ -15,12 +15,15 @@ namespace MedicalTrader
         public string phone { get; set; }
         public string license { get; set; }
         public string inn { get; set; }
+        public string address { get; set; }
+        public string licenseUrl { get; set; }
+        public string descr { get; set; }
 
         public Client()
         {
         }
 
-        public Client(int id, string companyName, string contactFace, string phone, string license, string inn)
+        public Client(int id, string companyName, string contactFace, string phone, string license, string inn, string address, string licenseUrl,string descr)
         {
             this.id = id;
             this.companyName = companyName;
@@ -28,6 +31,9 @@ namespace MedicalTrader
             this.phone = phone;
             this.license = license;
             this.inn = inn;
+            this.address = address;
+            this.licenseUrl = licenseUrl;
+            this.descr = descr;
         }
     }
 }

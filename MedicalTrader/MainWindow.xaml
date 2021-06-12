@@ -73,12 +73,9 @@
 
                 </MenuItem>
 
-                <MenuItem
-    Header="_Настройки">
-                    <MenuItem
-      Header="..."
-     
-      Icon="{materialDesign:PackIcon Kind=Circle}" />
+                <MenuItem Click="NavigateToSettings" 
+    Header="Настройки">
+                    
                 </MenuItem>
                 <MenuItem
     Header="_Помощь">

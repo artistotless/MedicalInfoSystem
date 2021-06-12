@@ -26,6 +26,7 @@ namespace MedicalTrader
             tableGRLSdrugs.ItemsSource = DBConnector.Db().GrlpDrugs.ToList();
             tableDrugs.InitializingNewItem += TableDrugs_InitializingNewItem; ;
             tableDrugs.CellEditEnding += TableDrugs_CellEditEnding;
+            
 
             Console.WriteLine();
         }
@@ -153,14 +154,15 @@ namespace MedicalTrader
 
 
                             tableGRLSdrugsResults.Items.Clear();
+                            ((Border)tableGRLSdrugsResults.Parent).Visibility = Visibility.Visible;
+
                             foreach (GrlpDrug obj in tableGRLSdrugs.ItemsSource)
                             {
 
                                 var q = obj.name != null ? obj.name : string.Empty;
                                 if (!string.IsNullOrEmpty(q) && q.ToUpper().Contains(query.ToUpper()))
                                 {
-                                    ((Border)tableGRLSdrugsResults.Parent).Visibility = Visibility.Visible;
-
+                                   
 
                                     tableGRLSdrugsResults.Items.Add((GrlpDrug)obj);
 
@@ -174,6 +176,7 @@ namespace MedicalTrader
 
                         case "Номеру удостоверения":
                             tableGRLSdrugsResults.Items.Clear();
+                            ((Border)tableGRLSdrugsResults.Parent).Visibility = Visibility.Visible;
 
                             foreach (GrlpDrug obj in tableGRLSdrugs.ItemsSource)
                             {
@@ -185,8 +188,7 @@ namespace MedicalTrader
                                 {
 
 
-                                    ((Border)tableGRLSdrugsResults.Parent).Visibility = Visibility.Visible;
-
+                                   
 
                                     tableGRLSdrugsResults.Items.Add((GrlpDrug)obj);
 
@@ -243,21 +245,23 @@ namespace MedicalTrader
                         case "Наименованию":
 
 
-
                             tableDrugsResults.Items.Clear();
+
+                            ((Border)tableDrugsResults.Parent).Visibility = Visibility.Visible;
+
                             foreach (Drug obj in tableDrugs.ItemsSource)
                             {
                                 var q = obj.nomenclature != null ? obj.nomenclature : string.Empty;
 
                                 if (!string.IsNullOrEmpty(q) && q.ToUpper().Contains(query.ToUpper()))
                                 {
-                                    ((Border)tableDrugsResults.Parent).Visibility = Visibility.Visible;
-
+                                    
 
                                     tableDrugsResults.Items.Add((Drug)obj);
 
 
                                 }
+
 
                             }
 
@@ -266,6 +270,7 @@ namespace MedicalTrader
 
                         case "Партии":
                             tableDrugsResults.Items.Clear();
+                            ((Border)tableDrugsResults.Parent).Visibility = Visibility.Visible;
 
                             foreach (Drug obj in tableDrugs.ItemsSource)
                             {
@@ -276,8 +281,7 @@ namespace MedicalTrader
                                 {
 
 
-                                    ((Border)tableDrugsResults.Parent).Visibility = Visibility.Visible;
-
+                                   
 
                                     tableDrugsResults.Items.Add((Drug)obj);
 
@@ -291,6 +295,9 @@ namespace MedicalTrader
                         case "Серии":
 
                             tableDrugsResults.Items.Clear();
+
+                            ((Border)tableDrugsResults.Parent).Visibility = Visibility.Visible;
+
                             foreach (Drug obj in tableDrugs.ItemsSource)
                             {
 
@@ -372,13 +379,23 @@ namespace MedicalTrader
                 ).Show();
         }
 
-        private void RefreshDrugsTable(object sender, RoutedEventArgs e)
+        public void RefreshDrugsTable(object sender, RoutedEventArgs e)
         {
             BackGroundEvents.ShowLoading("Обновление таблицы..");
             if (DBConnector.Db().Drugs.ToList().Count <= 0) { return; }
             //tableDrugs.Items.Clear();
-            tableDrugs.ItemsSource = DBConnector.Db().Drugs.ToList();
             BackGroundEvents.HideLoading();
+            tableDrugs.ItemsSource = DBConnector.Db().Drugs.ToList();
+           
+        }
+
+
+        private void EditSelectedDrug(object sender, RoutedEventArgs e)
+        {
+            new CustomWindow(
+             new other.WindowConfig("Редактирование медицинского препарата", 700, 550, ResizeMode.NoResize),
+             new MedicalItemsEditPage( (int)(((Button)sender).DataContext), tableDrugs)
+             ).Show();
         }
     }
 }

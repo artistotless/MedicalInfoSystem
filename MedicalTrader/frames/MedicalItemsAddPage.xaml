@@ -21,13 +21,13 @@
 
             </Grid.RowDefinitions>
             <Border  Background="White">
-                <TextBlock   FontWeight="Light"  Grid.Row="0" Grid.Column="0" FontSize="20" Margin="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}"  Text="Добавление препарата" />
+                <TextBlock x:Name="titleBox"  FontWeight="Light"  Grid.Row="0" Grid.Column="0" FontSize="20" Margin="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}"  Text="Добавление препарата" />
             </Border>
             <Border Background="White" Grid.Row="0" Grid.Column="1">
-                <Button  x:Name="openExcel" Click="SaveDrug"
+                <Button  x:Name="applyBtn" Click="AddDrug"
   materialDesign:RippleAssist.Feedback="#FF8CEE81" Style="{StaticResource MaterialDesignOutlinedButton}"
   Width="130" HorizontalAlignment="Right" Margin="0 0 20 0"
-  Content="Сохранить" BorderBrush="#FF60C756" Foreground="#FF61C756" />
+  Content="Добавить" BorderBrush="#FF60C756" Foreground="#FF61C756" />
 
             </Border>
             <ScrollViewer Grid.Column="0" materialDesign:ScrollViewerAssist.IsAutoHideEnabled="True" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">

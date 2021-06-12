@@ -21,13 +21,14 @@ namespace MedicalTrader
         public int quantity { get; set; }
         public int availableQuantity { get; set; }
         public string certNumber { get; set; }
+        public int unit { get; set; }
 
 
         public Drug()
         {
         }
 
-        public Drug(int id, string nomenclature, string manufacturer, string country, string expirationDate, int warehouse, int series, int quantity, int availableQuantity,string certNumber)
+        public Drug(int id, string nomenclature, string manufacturer, string country, string expirationDate, int warehouse, int series, int quantity, int availableQuantity,string certNumber,int unit)
         {
             this.id = id;
             this.manufacturer = manufacturer;
@@ -39,6 +40,7 @@ namespace MedicalTrader
             this.quantity = quantity;
             this.availableQuantity = availableQuantity;
             this.certNumber = certNumber;
+            this.unit = unit;
         }
     }
 }

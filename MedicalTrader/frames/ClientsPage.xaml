@@ -1,0 +1,149 @@
+﻿<Page x:Class="MedicalTrader.ClientsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedicalTrader"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="ClientsPage">
+
+    <Grid>
+
+
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"/>
+
+                <RowDefinition Height="55"/>
+
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock   FontWeight="Light"  Grid.Row="0" Grid.Column="0" FontSize="20" Margin="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}"  Text="Клиенты" />
+
+
+            <ToolBarTray Grid.Row="1" Grid.Column="0">
+                <ToolBar x:Name="toolbarDrugs"
+    Style="{DynamicResource MaterialDesignToolBar}"
+    ClipToBounds="False">
+
+
+                    <Button Click="SaveClientTable" 
+  Content="{materialDesign:PackIcon ContentSave}"
+  ToolTip="Сохранить" Foreground="#99000000" />
+                    <Separator />
+                    <Button Click="OpenDialogToAddNewClient"
+      ToolTip="Добавить клиента"
+      Content="{materialDesign:PackIcon Kind=Add}" Foreground="#99000000" />
+                    <Separator />
+
+                    <Button Click="RefreshClientsTable"
+      ToolTip="Обновить"
+      Content="{materialDesign:PackIcon Kind=Refresh}" Foreground="#99000000" />
+                    <Separator />
+                    <Button Click="CreateOffer"
+      ToolTip="Создать коммерческое предложение"
+      Content="{materialDesign:PackIcon Kind=Offer}" Foreground="#FF61C756" />
+                    <Separator />
+                
+                    <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and
+                   manually apply the button style -->
+                    <ListBox/>
+                    <ListBox
+      SelectedIndex="0">
+                        <ListBox.ToolTip>
+                            <StackPanel>
+                                <TextBlock
+            Text="MaterialDesignToolToggleFlatListBox" />
+                                <TextBlock
+            Text="Exclusive selection" />
+                                <TextBlock
+            Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                            </StackPanel>
+                        </ListBox.ToolTip>
+                    </ListBox>
+                    <ListBox
+      SelectionMode="Extended">
+                        <ListBox.ToolTip>
+                            <StackPanel>
+                                <TextBlock
+            Text="MaterialDesignToolToggleListBox" />
+                                <TextBlock
+            Text="Multiple selection" />
+                                <TextBlock
+            Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                            </StackPanel>
+                        </ListBox.ToolTip>
+                    </ListBox>
+
+                   
+                    <TextBox x:Name="SearchField"
+            Grid.Column="1"
+            Margin="8 0 0 0"
+                    Height="30px"
+            materialDesign:HintAssist.Hint="Поиск ..."
+            
+            BorderThickness="0"
+            MinWidth="200"
+            VerticalAlignment="Center" />
+                    <Button Click="SearchForTableClientsItems" x:Name="searchBtn"
+  Content="{materialDesign:PackIcon Search}"
+  ToolTip="Поиск" />
+                    <Separator />
+                </ToolBar>
+            </ToolBarTray>
+
+
+
+            <Border  Grid.Row="2" Grid.Column="0" >
+                <DataGrid IsReadOnly="True" AutoGenerateColumns="False" x:Name="tableClients"   ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn MaxWidth="86" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button ToolTip="Редактировать" Content="{materialDesign:PackIcon Edit}" DataContext="{Binding Path=id}" Style="{StaticResource MaterialDesignOutlinedButton}" Click="EditSelectedClient"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Компания" Binding="{Binding Path=companyName }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Представитель" Binding="{Binding Path=contactFace  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding Path=phone }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="ИНН" Binding="{Binding Path=inn  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Адрес" Binding="{Binding Path=address  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Лицензия" Binding="{Binding Path=license  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Описание" Binding="{Binding Path=descr  }"></DataGridTextColumn>
+                         </DataGrid.Columns>
+                </DataGrid>
+
+            </Border>
+            <Border  Grid.Row="2" Grid.Column="0" Visibility="Hidden" >
+                <DataGrid AutoGenerateColumns="False" x:Name="tableDrugsResults"   ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto">>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Серия" Binding="{Binding Path=series }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Партия" Binding="{Binding Path=party  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding Path=nomenclature }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Склад" Binding="{Binding Path=warehouse  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Изготовитель" Binding="{Binding Path=manufacturer  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Страна" Binding="{Binding Path=country }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=quantity  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Доступно" Binding="{Binding Path=availableQuantity }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Path=price}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Срок годности" Binding="{Binding Path=expirationDate }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Номер регистрационного удостоверения" Binding="{Binding Path=certNumber }"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+
+        </Grid>
+
+      
+</Page>

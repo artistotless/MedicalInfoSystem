@@ -20,8 +20,11 @@ namespace MedicalTrader
         // 5 PurchasesPage()
         // 6 SalesPage()
         // 7 WarehousesPage()
+        // 8 SettingsPage()
+        // 9 ClientsPage()
 
-        private Page[] pages = { null, new DocumentsPage(), new MedicalItemsPage(), new PlanningPage(), new ProvidersPage(), new PurchasesPage(), new SalesPage(), new WarehousesPage() };
+
+        private Page[] pages = { null, new DocumentsPage(), new MedicalItemsPage(), new PlanningPage(), new ProvidersPage(), new PurchasesPage(), new SalesPage(), new WarehousesPage(), new SettingsPage(), new ClientsPage()};
         private ColorAnimation animation;
         //Window lastPage = null, User authUser = null
         public MainWindow(Window lastWindow = null, User authUser = null)
@@ -110,9 +113,13 @@ namespace MedicalTrader
                 case "Документы":
                     MainFrame.Content = pages[1];
                     break;
+                case "Клиенты":
+                    MainFrame.Content = pages[9];
+                    break;
                 case "Главная":
                     MainFrame.Content = pages[2];
                     break;
+
             }
 
 
@@ -121,6 +128,13 @@ namespace MedicalTrader
         private void ExitFromAccount(object sender, RoutedEventArgs e)
         {
             new Auth(this).Show();
+        }
+
+        private void NavigateToSettings(object sender, RoutedEventArgs e)
+        {
+
+            MainFrame.Content = pages[8];
+
         }
     }
 }

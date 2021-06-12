@@ -149,9 +149,28 @@
     <Compile Include="dbClasses\Provider.cs" />
     <Compile Include="dbClasses\Purchase.cs" />
     <Compile Include="dbClasses\Sale.cs" />
+    <Compile Include="dbClasses\Unit.cs" />
     <Compile Include="dbClasses\User.cs" />
+    <Compile Include="frames\ClientsAddPage.xaml.cs">
+      <DependentUpon>ClientsAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frames\ClientsPage.xaml.cs">
+      <DependentUpon>ClientsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="frames\MedicalItemsAddPage.xaml.cs">
       <DependentUpon>MedicalItemsAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frames\MedicalItemsEditPage.xaml.cs">
+      <DependentUpon>MedicalItemsEditPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frames\UnitPage.xaml.cs">
+      <DependentUpon>UnitPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frames\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frames\UsersPage.xaml.cs">
+      <DependentUpon>UsersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="frames\WarehousesAddPage.xaml.cs">
       <DependentUpon>WarehousesAddPage.xaml</DependentUpon>
@@ -203,11 +222,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="frames\ClientsAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frames\ClientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="frames\DocumentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="frames\MedicalItemsAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frames\MedicalItemsEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frames\UnitPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frames\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="frames\UsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

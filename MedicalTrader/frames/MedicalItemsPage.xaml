@@ -44,6 +44,8 @@
                     <Button Click="OpenAddDrugPage"
       ToolTip="Добавить препарат"
       Content="{materialDesign:PackIcon Kind=Add}" Foreground="#99000000" />
+                    <Separator />
+                    
                     <Button Click="RefreshDrugsTable"
       ToolTip="Обновить"
       Content="{materialDesign:PackIcon Kind=Refresh}" Foreground="#99000000" />
@@ -116,15 +118,25 @@
 
 
             <Border  Grid.Row="2" Grid.Column="0" >
-                <DataGrid AutoGenerateColumns="False" x:Name="tableDrugs"   ScrollViewer.CanContentScroll="True" 
+                <DataGrid IsReadOnly="True" AutoGenerateColumns="False" x:Name="tableDrugs"   ScrollViewer.CanContentScroll="True" 
       ScrollViewer.VerticalScrollBarVisibility="Auto"
       ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                   
                     <DataGrid.Columns>
+                        <DataGridTemplateColumn MaxWidth="86" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button ToolTip="Редактировать" Content="{materialDesign:PackIcon Edit}" DataContext="{Binding Path=id}" Style="{StaticResource MaterialDesignOutlinedButton}" Click="EditSelectedDrug"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
                         <DataGridTextColumn Header="Серия" Binding="{Binding Path=series }"></DataGridTextColumn>
                         <DataGridTextColumn Header="Партия" Binding="{Binding Path=party  }"></DataGridTextColumn>
                         <DataGridTextColumn Header="Наименование" Binding="{Binding Path=nomenclature }"></DataGridTextColumn>
                         <DataGridTextColumn Header="Склад" Binding="{Binding Path=warehouse  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Единица измерения" Binding="{Binding Path=unit  }"></DataGridTextColumn>
                         <DataGridTextColumn Header="Изготовитель" Binding="{Binding Path=manufacturer  }"></DataGridTextColumn>
                         <DataGridTextColumn Header="Страна" Binding="{Binding Path=country }"></DataGridTextColumn>
                         <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=quantity  }"></DataGridTextColumn>

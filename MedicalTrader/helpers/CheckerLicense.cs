@@ -14,7 +14,7 @@ namespace MedicalTrader.helpers
 
         public async Task<BuyerLicense> CheckLicenceAsync(string inn)
         {
-            BackGroundEvents.ShowLoading("Проверяем лицензию...");
+            BackGroundEvents.ShowLoading("Проверяется наличие лицензии...");
 
             HttpClient httpClient = new HttpClient();
             string request = urlService + LicenceApiParameters.Get(inn);
