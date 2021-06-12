@@ -79,7 +79,7 @@ namespace MedicalTrader
                 tableGRLSdrugs.Items.Clear();
                 var array = DBConnector.Db().GrlpDrugs.ToArray();
                 if (array.Length > 0) { DBConnector.Db().GrlpDrugs.RemoveRange(array); }
-                DBConnector.Db().Database.ExecuteSqlCommand("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'GrlpDrugs'");
+                DBConnector.Db().Database.ExecuteSqlCommand("UPDATE sqlite_sequence SET seq = 0 WHERE name = 'GrlsDrugs'");
 
                 DBConnector.Db().SaveChanges();
             });
@@ -98,7 +98,7 @@ namespace MedicalTrader
 
 
             updateGRLSBtn.IsEnabled = false;
-            string zipfile = await new GRLPService().DownloadGRLPAsync();
+            string zipfile = await new GRLSService().DownloadGRLPAsync();
             string excelFile = await new ZipWrapper().UnzipAsync(zipfile, Settings.GRLP_PATH);
             var result = await new ExcelReader().ExcelToSqlAsync(excelFile);
             if (result != null)
@@ -123,7 +123,7 @@ namespace MedicalTrader
         private async void OpenExcel_Click(object sender, RoutedEventArgs e)
         {
             BackGroundEvents.ShowLoading("Скачивается свежий каталог...");
-            string zipfile = await new GRLPService().DownloadGRLPAsync();
+            string zipfile = await new GRLSService().DownloadGRLPAsync();
             BackGroundEvents.ShowLoading("Распаковка архива...");
             string excelFile = await new ZipWrapper().UnzipAsync(zipfile, Settings.GRLP_PATH);
             BackGroundEvents.ShowLoading("Запуск Excel...");
@@ -156,7 +156,7 @@ namespace MedicalTrader
                             tableGRLSdrugsResults.Items.Clear();
                             ((Border)tableGRLSdrugsResults.Parent).Visibility = Visibility.Visible;
 
-                            foreach (GrlpDrug obj in tableGRLSdrugs.ItemsSource)
+                            foreach (GrlsDrug obj in tableGRLSdrugs.ItemsSource)
                             {
 
                                 var q = obj.name != null ? obj.name : string.Empty;
@@ -164,7 +164,7 @@ namespace MedicalTrader
                                 {
 
 
-                                    tableGRLSdrugsResults.Items.Add((GrlpDrug)obj);
+                                    tableGRLSdrugsResults.Items.Add((GrlsDrug)obj);
 
 
                                 }
@@ -178,7 +178,7 @@ namespace MedicalTrader
                             tableGRLSdrugsResults.Items.Clear();
                             ((Border)tableGRLSdrugsResults.Parent).Visibility = Visibility.Visible;
 
-                            foreach (GrlpDrug obj in tableGRLSdrugs.ItemsSource)
+                            foreach (GrlsDrug obj in tableGRLSdrugs.ItemsSource)
                             {
 
                                 var q = obj.certNumber != null ? obj.certNumber : string.Empty;
@@ -190,7 +190,7 @@ namespace MedicalTrader
 
 
 
-                                    tableGRLSdrugsResults.Items.Add((GrlpDrug)obj);
+                                    tableGRLSdrugsResults.Items.Add((GrlsDrug)obj);
 
 
                                 }

@@ -700,4 +700,3 @@ D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\MedicalTrader.csproj.CoreCom
 D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\MedicalTrader.csproj.CopyComplete
 D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\MedicalTrader.exe
 D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\MedicalTrader.pdb
-D:\GitHub\MedicalInfoSystem\MedicalTrader\obj\Debug\MedicalTrader.csprojAssemblyReference.cache

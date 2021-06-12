@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MedicalTrader
 {
 
-    class GrlpDrug
+    class GrlsDrug
     {
         public int id { get; set; }
         public string certNumber { get; set; }
@@ -25,11 +25,11 @@ namespace MedicalTrader
         public string normativeDocuments { get; set; }
         public string farmGroups { get; set; }
 
-        public GrlpDrug()
+        public GrlsDrug()
         {
         }
 
-        public GrlpDrug(int id, string certNumber, string regDate, string certEndDate, string certNullDate, string certOwner, string country, string name, string chemicalName, string releaseForms, string stageOfProduction, string consumerBarcodes, string normativeDocuments, string farmGroups)
+        public GrlsDrug(int id, string certNumber, string regDate, string certEndDate, string certNullDate, string certOwner, string country, string name, string chemicalName, string releaseForms, string stageOfProduction, string consumerBarcodes, string normativeDocuments, string farmGroups)
         {
             this.id = id;
             this.certNumber = certNumber;

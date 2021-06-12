@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MedicalTrader.helpers
 {
-    class GRLPService
+    class GRLSService
     {
      
         public async Task<string> DownloadGRLPAsync()

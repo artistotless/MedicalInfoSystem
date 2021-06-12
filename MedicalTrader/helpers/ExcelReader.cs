@@ -15,17 +15,17 @@ namespace MedicalTrader.helpers
     class ExcelReader
     {
         DataTable table;
-        List<GrlpDrug> grlpList;
+        List<GrlsDrug> grlpList;
         int rowsCompleteCount = 1;
-        public async Task<List<GrlpDrug>> ExcelToSqlAsync(string excelFile)
+        public async Task<List<GrlsDrug>> ExcelToSqlAsync(string excelFile)
         {
             return await Task.Run(() => ExcelToSql(excelFile));
 
         }
 
-        private List<GrlpDrug> ExcelToSql(string excelFile)
+        private List<GrlsDrug> ExcelToSql(string excelFile)
         {
-            List<GrlpDrug> list = new List<GrlpDrug>();
+            List<GrlsDrug> list = new List<GrlsDrug>();
             BackGroundEvents.ShowLoading("Обновление локальной БД...");
             using (var stream = File.Open(excelFile, FileMode.Open, FileAccess.Read))
             {
@@ -46,7 +46,7 @@ namespace MedicalTrader.helpers
                     table = result.Tables[0];
                     BackGroundEvents.HideLoading();
                     int i = 0;
-                    grlpList = new List<GrlpDrug>(table.Rows.Count);
+                    grlpList = new List<GrlsDrug>(table.Rows.Count);
 
                     for (i = 0; i < table.Rows.Count - 6; i++)
                     {
@@ -72,7 +72,7 @@ namespace MedicalTrader.helpers
 
             BackGroundEvents.ShowLoading(string.Format("Обновление локальной БД...({0}/{1})", rowsCompleteCount.ToString(), table.Rows.Count.ToString()));
             rowsCompleteCount++;
-            grlpList[i - 6] = new GrlpDrug(
+            grlpList[i - 6] = new GrlsDrug(
                     0,
                     table.Rows[i][2].ToString(),
                     table.Rows[i][3].ToString(),
