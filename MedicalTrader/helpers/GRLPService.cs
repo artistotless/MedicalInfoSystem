@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.IO;
-using System.Linq;
+
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -24,9 +23,9 @@ namespace MedicalTrader.helpers
             {
                 BackGroundEvents.ShowLoading("Загрузка номенклатуры с ГРЛП (grls.rosminzdrav.ru)...");
 
-                if (File.Exists(Settings.GRLP_PATH + Settings.GRLP_ZIP_NAME))
+                if (File.Exists(Settings.DB_PATH + Settings.GRLP_ZIP_NAME))
                 {
-                    return Settings.GRLP_PATH + Settings.GRLP_ZIP_NAME;
+                    return Settings.DB_PATH + Settings.GRLP_ZIP_NAME;
                 }
 
                 string url = Settings.GRLP_URL +"/grls.aspx";
@@ -37,7 +36,7 @@ namespace MedicalTrader.helpers
                 Regex regex = new Regex(regexTarget, RegexOptions.Compiled | RegexOptions.IgnoreCase);
                 string remoteFileName = "";
 
-                string localFileName = Settings.GRLP_PATH + Settings.GRLP_ZIP_NAME;
+                string localFileName = Settings.DB_PATH + Settings.GRLP_ZIP_NAME;
                 MatchCollection matches = regex.Matches(text);
 
 
@@ -49,12 +48,12 @@ namespace MedicalTrader.helpers
 
                 }
 
-                if (!Directory.Exists(Settings.GRLP_PATH))
+                if (!Directory.Exists(Settings.DB_PATH))
                 {
 
-                    Directory.CreateDirectory(Settings.GRLP_PATH);
+                    Directory.CreateDirectory(Settings.DB_PATH);
                 }
-                foreach (var item in Directory.GetFiles(Settings.GRLP_PATH))
+                foreach (var item in Directory.GetFiles(Settings.DB_PATH))
                 {
                     File.Delete(item);
                 }

@@ -29,12 +29,12 @@
 
 
 
-                <Button 
+                <Button Click="SaveUsers"
   Content="{materialDesign:PackIcon ContentSave}"
   ToolTip="Сохрнаить" Foreground="#99000000" />
                 <Separator />
                 
-                <Button 
+                <Button Click="RefreshUsers"
       ToolTip="Обновить"
       Content="{materialDesign:PackIcon Kind=Refresh}" Foreground="#99000000" />
                 <Separator />

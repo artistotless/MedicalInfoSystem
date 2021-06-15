@@ -1,18 +1,8 @@
 ﻿using MedicalTrader.helpers;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace MedicalTrader
 {
@@ -43,8 +33,8 @@ namespace MedicalTrader
 
         private async void AutoFillClientBlank(object sender, RoutedEventArgs e)
         {
-            var checker = new CheckerLicense();
-            var license = await checker.CheckLicenceAsync(inn.Text);
+            var checker = new RosZdravNadzor();
+            var license = await checker.GetLicenceAsync(inn.Text);
             if (license.data != null)
             {
                 if (license.data.Count <= 0) { }

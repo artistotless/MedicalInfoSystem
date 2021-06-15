@@ -1,18 +1,9 @@
 ﻿using MaterialDesignThemes.Wpf;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace MedicalTrader
 {
@@ -24,6 +15,8 @@ namespace MedicalTrader
         public ClientsPage()
         {
             InitializeComponent();
+            tableClients.Items.Clear();
+            tableClients.ItemsSource = DBConnector.Db().Clients.ToList();
         }
 
         private void OpenDialogToAddNewClient(object sender, RoutedEventArgs e)
@@ -43,7 +36,10 @@ namespace MedicalTrader
 
         private void CreateOffer(object sender, RoutedEventArgs e)
         {
-
+            new CustomWindow(
+             new other.WindowConfig("Новый оффер", 750, 550),
+             new OfferAddPage()
+             ).Show();
         }
 
         private void RefreshClientsTable(object sender, RoutedEventArgs e)
@@ -97,8 +93,23 @@ namespace MedicalTrader
         }
 
 
-        private void EditSelectedClient(object sender, RoutedEventArgs e)
+        private void RemoveSelectedClient(object sender, RoutedEventArgs e)
         {
+            List<Client> tempArray = new List<Client>();
+            var id = (int)(((Button)sender).DataContext);
+            foreach (Client item in tableClients.Items)
+            {
+                tempArray.Add(item);
+            }
+            var willdeleted = tempArray.Where(x => x.id == id).Select(x => x).First();
+            tempArray.Remove(willdeleted);
+            //tableClients.Items.Remove(willdeleted);
+            
+            DBConnector.Db().Clients.Remove(willdeleted);
+           
+            DBConnector.Db().SaveChanges();
+            tableClients.ItemsSource = DBConnector.Db().Clients.ToList();
+
 
         }
     }

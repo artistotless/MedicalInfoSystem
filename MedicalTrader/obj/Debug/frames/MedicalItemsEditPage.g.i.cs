@@ -41,7 +41,7 @@ namespace MedicalTrader {
     /// <summary>
     /// MedicalItemsEditPage
     /// </summary>
-    public partial class MedicalItemsEditPage : System.Windows.Controls.Page, System.Windows.Markup.IComponentConnector {
+    public partial class DrugsEditPage : System.Windows.Controls.Page, System.Windows.Markup.IComponentConnector {
         
         
         #line 24 "..\..\..\frames\MedicalItemsEditPage.xaml"

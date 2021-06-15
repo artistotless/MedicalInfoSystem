@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace MedicalTrader
 {
@@ -23,6 +15,28 @@ namespace MedicalTrader
         public DocumentsPage()
         {
             InitializeComponent();
+            tableDocs.Items.Clear();
+            tableDocs.ItemsSource = DBConnector.Db().Drugs.ToList();
+
+        }
+
+        private void OpenDocument(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Process.Start(Environment.CurrentDirectory + @"\" + @"offer_" + ((Button)sender).Tag.ToString() + ".docx");
+            
+        }
+
+        private void RefreshClientsTable(object sender, System.Windows.RoutedEventArgs e)
+        {
+       
+                BackGroundEvents.ShowLoading("Обновление таблицы..");
+                if (DBConnector.Db().Documents.ToList().Count <= 0) { BackGroundEvents.HideLoading(); return; }
+            //tableDrugs.Items.Clear();
+
+            tableDocs.ItemsSource = DBConnector.Db().Documents.ToList();
+                BackGroundEvents.HideLoading();
+           
+
         }
     }
 }

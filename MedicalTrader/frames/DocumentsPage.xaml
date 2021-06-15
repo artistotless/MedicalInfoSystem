@@ -4,11 +4,104 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MedicalTrader"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="500" d:DesignWidth="800"
       Title="DocumentsPage">
 
     <Grid>
-        
+
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+
+            <RowDefinition Height="55"/>
+
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock   FontWeight="Light"  Grid.Row="0" Grid.Column="0" FontSize="20" Margin="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}"  Text="Документы" />
+
+
+        <ToolBarTray Grid.Row="1" Grid.Column="0">
+            <ToolBar x:Name="toolbarClients"
+    Style="{DynamicResource MaterialDesignToolBar}"
+    ClipToBounds="False">
+
+
+              
+                
+
+                <Button Click="RefreshClientsTable"
+      ToolTip="Обновить"
+      Content="{materialDesign:PackIcon Kind=Refresh}" Foreground="#99000000" />
+                <Separator />
+               
+
+                <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and
+                   manually apply the button style -->
+                <ListBox/>
+                <ListBox
+      SelectedIndex="0">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock
+            Text="MaterialDesignToolToggleFlatListBox" />
+                            <TextBlock
+            Text="Exclusive selection" />
+                            <TextBlock
+            Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                </ListBox>
+                <ListBox
+      SelectionMode="Extended">
+                    <ListBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock
+            Text="MaterialDesignToolToggleListBox" />
+                            <TextBlock
+            Text="Multiple selection" />
+                            <TextBlock
+            Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                        </StackPanel>
+                    </ListBox.ToolTip>
+                </ListBox>
+
+
+          
+         
+           
+            </ToolBar>
+        </ToolBarTray>
+
+
+
+        <Border  Grid.Row="2" Grid.Column="0" >
+            <DataGrid IsReadOnly="True" AutoGenerateColumns="False" x:Name="tableDocs"   ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn MaxWidth="86" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button ToolTip="Открыть документ" materialDesign:RippleAssist.Feedback="#FFE53935" BorderBrush="#FFE53935" Foreground="#FFE53935" Content="{materialDesign:PackIcon FileDocument}" Tag="{Binding Path=id}"  Style="{StaticResource MaterialDesignOutlinedButton}" Click="OpenDocument"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Тип" Binding="{Binding Path=type }"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Наименование" Binding="{Binding Path=name  }"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Описание" Binding="{Binding Path=descr }"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Дата" Binding="{Binding Path=date  }"></DataGridTextColumn>
+                     </DataGrid.Columns>
+            </DataGrid>
+
+        </Border>
+       
     </Grid>
+
+
 </Page>

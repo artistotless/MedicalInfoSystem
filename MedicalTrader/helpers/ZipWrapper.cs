@@ -1,17 +1,13 @@
 ﻿using Ionic.Zip;
-using System;
-using System.Collections.Generic;
+
 using System.IO;
-using System.Linq;
-using System.Text;
+
 using System.Threading.Tasks;
 
 namespace MedicalTrader.helpers
 {
     class ZipWrapper
     {
-
-
         public async Task<string> UnzipAsync(string ExistingZipFile, string TargetDirectory)
         {
             return await Task.Run(() => Unzip(ExistingZipFile, TargetDirectory));

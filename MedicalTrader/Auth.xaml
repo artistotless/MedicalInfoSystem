@@ -26,14 +26,14 @@
   Style="{StaticResource MaterialDesignHeadline5TextBlock}"
   Text="Авторизация" />
 
-                <TextBox Text="admin" Margin="0 0 0 25"
+                <TextBox  Margin="0 0 0 25"
   x:Name="loginField"
   materialDesign:HintAssist.Hint="Login"
   materialDesign:HintAssist.HelperText="Введите ваш логин">
 
                 </TextBox>
 
-                <PasswordBox Password="admin"  Margin="0 0 0 40"
+                <PasswordBox  Margin="0 0 0 40"
   x:Name="passwordField"
   materialDesign:HintAssist.Hint="Password"
   materialDesign:TextFieldAssist.HasClearButton="True"

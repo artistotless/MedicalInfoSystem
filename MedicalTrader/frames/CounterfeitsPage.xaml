@@ -1,0 +1,325 @@
+﻿<Page x:Class="MedicalTrader.CounterfeitsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedicalTrader"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="CounterfeitsPage">
+
+
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="auto"/>
+
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"/>
+
+                <RowDefinition Height="55"/>
+
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel  Grid.Row="0" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center"  FontWeight="Light"  Grid.Row="0" Grid.Column="0" FontSize="20" Margin="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}"  Text="Фальсификат на складе" />
+                <Button VerticalAlignment="Center" materialDesign:RippleAssist.Feedback="#FF5693EA" Tag="2"  Click="NavigateToDrugsPage"
+  Style="{StaticResource MaterialDesignFlatButton}"
+
+  Content="Все" Foreground="#FF2F67B8" />
+                <Button VerticalAlignment="Center" IsEnabled="False" materialDesign:RippleAssist.Feedback="#FF5693EA" 
+  Style="{StaticResource MaterialDesignFlatButton}"
+
+  Content="Фальсификаты" Foreground="#FF2F67B8" />
+            </StackPanel>
+
+            <ToolBarTray Grid.Row="1" Grid.Column="0">
+                <ToolBar x:Name="toolbarDrugs"
+    Style="{DynamicResource MaterialDesignToolBar}"
+    ClipToBounds="False">
+
+
+                    <Button Click="SaveDTableCounterfeits" 
+  Content="{materialDesign:PackIcon ContentSave}"
+  ToolTip="Сохрнаить" Foreground="#99000000" />
+                    <Separator />
+                    <Button Click="OpenAddCounterfeits"
+      ToolTip="Добавить препарат"
+      Content="{materialDesign:PackIcon Kind=Add}" Foreground="#99000000" />
+                    <Separator />
+
+                    <Button Click="RefreshCounterfeitsTable"
+      ToolTip="Обновить"
+      Content="{materialDesign:PackIcon Kind=Refresh}" Foreground="#99000000" />
+                    <Separator />
+                    <!-- when badging in a toolbar, make sure the parent ToolBar.ClipToBounds="False", and
+                   manually apply the button style -->
+                    <ListBox/>
+                    <ListBox
+      SelectedIndex="0">
+                        <ListBox.ToolTip>
+                            <StackPanel>
+                                <TextBlock
+            Text="MaterialDesignToolToggleFlatListBox" />
+                                <TextBlock
+            Text="Exclusive selection" />
+                                <TextBlock
+            Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                            </StackPanel>
+                        </ListBox.ToolTip>
+                    </ListBox>
+                    <ListBox
+      SelectionMode="Extended">
+                        <ListBox.ToolTip>
+                            <StackPanel>
+                                <TextBlock
+            Text="MaterialDesignToolToggleListBox" />
+                                <TextBlock
+            Text="Multiple selection" />
+                                <TextBlock
+            Text="ListBoxAssist.IsToggle allows more natural toggle behaviour" />
+                            </StackPanel>
+                        </ListBox.ToolTip>
+                    </ListBox>
+
+                    <Label
+      Content="Поиск по:"
+      VerticalAlignment="Center" />
+                    <ComboBox x:Name="SearchType">
+                        <ComboBoxItem
+                        IsSelected="True"
+        Content="Наименованию" />
+                        <ComboBoxItem
+        
+        Content="Партии" />
+                        <ComboBoxItem
+        Content="Серии" />
+
+                    </ComboBox>
+                    <TextBox x:Name="SearchField"
+            Grid.Column="1"
+            Margin="8 0 0 0"
+                    Height="30px"
+            materialDesign:HintAssist.Hint="Введите запрос"
+            
+            BorderThickness="0"
+            MinWidth="200"
+            VerticalAlignment="Center" />
+                    <Button Click="SearchForCounterfeit"
+  Content="{materialDesign:PackIcon Search}"
+  ToolTip="Поиск" />
+                    <Separator />
+                </ToolBar>
+            </ToolBarTray>
+
+
+
+            <Border  Grid.Row="2" Grid.Column="0" >
+                <DataGrid IsReadOnly="True" AutoGenerateColumns="False" x:Name="tableDrugs"   ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn MaxWidth="86" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button ToolTip="Вернуть поставщику" Content="{materialDesign:PackIcon SwapHorizontalBold}" DataContext="{Binding Path=id}" Style="{StaticResource MaterialDesignOutlinedButton}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Серия" Binding="{Binding Path=series }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Партия" Binding="{Binding Path=party  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding Path=nomenclature }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Склад" Binding="{Binding Path=warehouse  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Серия изготовителя" Binding="{Binding Path=seriesManufacturer  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Единица измерения" Binding="{Binding Path=unit  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Изготовитель" Binding="{Binding Path=manufacturer  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Страна" Binding="{Binding Path=country }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=quantity  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Доступно" Binding="{Binding Path=availableQuantity }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Path=price}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Срок годности" Binding="{Binding Path=expirationDate }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Номер регистрационного удостоверения" Binding="{Binding Path=certNumber }"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Border>
+            <Border  Grid.Row="2" Grid.Column="0" Visibility="Hidden" >
+                <DataGrid AutoGenerateColumns="False" x:Name="tableDrugsResults"   ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto">>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Серия" Binding="{Binding Path=series }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Партия" Binding="{Binding Path=party  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding Path=nomenclature }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Склад" Binding="{Binding Path=warehouse  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Изготовитель" Binding="{Binding Path=manufacturer  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Страна" Binding="{Binding Path=country }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Кол-во" Binding="{Binding Path=quantity  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Доступно" Binding="{Binding Path=availableQuantity }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Path=price}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Срок годности" Binding="{Binding Path=expirationDate }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Номер регистрационного удостоверения" Binding="{Binding Path=certNumber }"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+        </Grid>
+
+        <GridSplitter Grid.Row="1" ShowsPreview="True" Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" ></GridSplitter>
+        <Grid Grid.Row="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="64"/>
+
+                <RowDefinition Height="55"/>
+
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock   FontWeight="Light"  Grid.Row="0" Grid.Column="0" FontSize="20" Margin="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}"  Text="Государственный реестр фальсификатов" />
+
+
+            <ToolBarTray Grid.Row="1" Grid.Column="0">
+                <ToolBar x:Name="toolbarClients"
+    Style="{DynamicResource MaterialDesignToolBar}"
+    ClipToBounds="False">
+
+
+                    <Button Click="SaveRegistryCounterfeitsTable" 
+  Content="{materialDesign:PackIcon ContentSave}"
+  ToolTip="Сохранить" Foreground="#99000000" />
+                    <Separator />
+                   
+                    <materialDesign:DialogHost BorderBrush="{DynamicResource MaterialDesignDivider}">
+                        <materialDesign:DialogHost.DialogContent>
+                            <Grid  Background="White" Width="300" Height="220" HorizontalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="50px" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" Background="#FFF1F1F1">
+                                    <StackPanel   Orientation="Horizontal" Margin="15">
+                                        <StackPanel Orientation="Horizontal">
+                                            <materialDesign:PackIcon Kind="DatabaseRefresh" Foreground="#FF747474"   Width="20" Height="20"/>
+
+                                            <TextBlock VerticalAlignment="Center" Foreground="Gray" Width="200" Margin="15 0 0 0" TextWrapping="Wrap">
+                            Какую именно базу обновить?
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                                <StackPanel Grid.Row="1"  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="27,23,27,22" Width="246">
+                                    <CheckBox Margin="5"
+    IsChecked="false"
+    Content="Фальсифицированные ЛС"
+    materialDesign:CheckBoxAssist.CheckBoxSize="20" Background="#FF6C6C6C" BorderBrush="#FF6C6C6C" />
+                                    <CheckBox Margin="5"
+    IsChecked="false"
+    Content="Сомнительные ЛС"
+    materialDesign:CheckBoxAssist.CheckBoxSize="20" Background="#FF6C6C6C" BorderBrush="#FF6C6C6C" />
+                                    <CheckBox Margin="5"
+    IsChecked="true"
+    Content="Недоброкачественные ЛС"
+    materialDesign:CheckBoxAssist.CheckBoxSize="20" Background="#FF6C6C6C" BorderBrush="#FF6C6C6C"/>
+
+
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
+
+                                    <Button  materialDesign:RippleAssist.Feedback="#FFE53935" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" Margin="4" VerticalAlignment="Center" Foreground="#FFE53935" BorderBrush="#FFE53935">
+                                        Отмена
+                                    </Button>
+                                    <Button  materialDesign:RippleAssist.Feedback="#FF56ADC7" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" Margin="4" VerticalAlignment="Center" BorderBrush="#FF56ADC7" Foreground="#FF56ADC7">
+                                        Продолжить
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </materialDesign:DialogHost.DialogContent>
+                        <Button Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"  Margin="10 0 10 0" x:Name="updateGRLSBtn" Click="UpdateRegistyCounterfeits"
+  materialDesign:RippleAssist.Feedback="#FF7FD4EE" Style="{StaticResource MaterialDesignOutlinedButton}"
+  ToolTip="Удалить базу и скачать заново"
+  Content="Обновить базу" BorderBrush="#FF56ADC7" Foreground="#FF56ADC7" />
+                    </materialDesign:DialogHost>
+
+                    <Separator />
+
+
+
+                    <TextBox x:Name="SearchRegistryCounterfeitField" Padding="5 0 0 0" VerticalContentAlignment="Center"
+            Grid.Column="1"
+            Margin="10 0 10 0"
+                    Height="30px"
+            materialDesign:HintAssist.Hint="Поиск по наименованию / серии / изготовителю"
+            
+            BorderThickness="0"
+            MinWidth="200"
+            VerticalAlignment="Center"  />
+                    <Button x:Name="search"
+  Content="{materialDesign:PackIcon Search}"
+  ToolTip="Поиск" Background="White" BorderBrush="White" Click="SearchForRegisrtyCounterfeit" />
+                    <Separator />
+
+                </ToolBar>
+            </ToolBarTray>
+
+
+
+            <Border  Grid.Row="2" Grid.Column="0" >
+                <DataGrid IsReadOnly="True" AutoGenerateColumns="False" x:Name="tableRegistryCounterfeit"   ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding Path=name }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Path=status  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Серия" Binding="{Binding Path=series }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Изготовитель" Binding="{Binding Path=manufacturer  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Страна" Binding="{Binding Path=country  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Масштаб" Binding="{Binding Path=scale  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Path=formRealease  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Справка" Binding="{Binding Path=documentUrl  }"></DataGridTextColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Border>
+            <Border  Grid.Row="2" Grid.Column="0" >
+                <DataGrid IsReadOnly="True" Visibility="Hidden" AutoGenerateColumns="False" x:Name="tableRegistryCounterfeitResults"   ScrollViewer.CanContentScroll="True" 
+      ScrollViewer.VerticalScrollBarVisibility="Auto"
+      ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn MaxWidth="86" >
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Наименование" Binding="{Binding Path=name }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Статус" Binding="{Binding Path=status  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Серия" Binding="{Binding Path=series }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Изготовитель" Binding="{Binding Path=manufacturer  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Страна" Binding="{Binding Path=country  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Масштаб" Binding="{Binding Path=scale  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Форма выпуска" Binding="{Binding Path=formRealease  }"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Справка" Binding="{Binding Path=documentUrl  }"></DataGridTextColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+</Page>

@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Medical Trader" Height="554.628" Width="800"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        xmlns:local1="clr-namespace:MedicalTrader.helpers"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
      TextElement.FontSize="13"
      TextOptions.TextFormattingMode="Ideal"
@@ -17,19 +18,13 @@
         >
     <Window.Resources>
 
-
         <Style x:Key="menuBtn" TargetType="{x:Type ButtonBase}" BasedOn="{StaticResource MaterialDesignOutlinedButton}">
             <Setter Property="Cursor" Value="Hand"/>
-
-
-
             <Setter Property="TextBlock.FontWeight" Value="Regular"/>
             <Setter Property="materialDesign:RippleAssist.Feedback" Value="#FFC3FAFF"/>
             <Setter Property="Padding" Value="10 0 0 0"/>
-
             <Setter Property="Height" Value="35"/>
             <Setter Property="Background" Value="#FFF5F5F5"/>
-
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="#FF858585"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -73,17 +68,12 @@
 
                 </MenuItem>
 
-                <MenuItem Click="NavigateToSettings" 
+                <MenuItem Click="NavigateToFrame" Tag="8"
     Header="Настройки">
                     
+                    
                 </MenuItem>
-                <MenuItem
-    Header="_Помощь">
-                    <MenuItem
-      Header="..."
-     
-      Icon="{materialDesign:PackIcon Kind=Circle}" />
-                </MenuItem>
+               
 
             </Menu>
 
@@ -119,7 +109,7 @@
 
                 <StackPanel Margin="0 13 0 0">
 
-
+                 
                     <Grid Margin="10 0 10 0">
 
                         <Grid.ColumnDefinitions>
@@ -128,7 +118,7 @@
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon Grid.Column="0"  Kind="Home" Foreground="#FF939393" VerticalAlignment="Center" >
                         </materialDesign:PackIcon>
-                        <Button Content="Главная" Click="NavigateToFrame" Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
+                        <Button Content="Главная" Tag="2" Click="NavigateToFrame" Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
                     </Grid>
 
                     <Grid Margin="10 0 10 0">
@@ -139,7 +129,7 @@
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon Grid.Column="0" Kind="Notebook" Foreground="#FF939393" VerticalAlignment="Center" >
                         </materialDesign:PackIcon>
-                        <Button Content="Планирование" Click="NavigateToFrame"  Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
+                        <Button Content="Планирование" Tag="0" Click="NavigateToFrame"  Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
                     </Grid>
                     <Grid Margin="10 0 10 0">
 
@@ -149,7 +139,7 @@
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon Grid.Column="0" Kind="Medicine" Foreground="#FF939393" VerticalAlignment="Center" >
                         </materialDesign:PackIcon>
-                        <Button Content="Препараты"  Click="NavigateToFrame"  Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
+                        <Button Content="Препараты" Tag="2"  Click="NavigateToFrame"  Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
                     </Grid>
                     <Grid Margin="10 0 10 0">
 
@@ -159,7 +149,7 @@
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon Grid.Column="0" Kind="ArchivePlus" Foreground="#FF939393" VerticalAlignment="Center" >
                         </materialDesign:PackIcon>
-                        <Button Content="Закупки" Click="NavigateToFrame" Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
+                        <Button Content="Закупки" Tag="1" Click="NavigateToFrame" Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
                     </Grid>
                     <Grid Margin="10 0 10 0">
 
@@ -169,7 +159,7 @@
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon Grid.Column="0" Kind="ArchiveMinus" Foreground="#FF939393" VerticalAlignment="Center" >
                         </materialDesign:PackIcon>
-                        <Button Content="Продажи" Click="NavigateToFrame" Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
+                        <Button Content="Продажи" Click="NavigateToFrame" Tag="3"  Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
                     </Grid>
                     <Grid Margin="10 0 10 0">
 
@@ -179,7 +169,7 @@
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon Grid.Column="0" Kind="Warehouse" Foreground="#FF939393" VerticalAlignment="Center" >
                         </materialDesign:PackIcon>
-                        <Button Content="Склады" Click="NavigateToFrame" Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
+                        <Button Content="Склады" Click="NavigateToFrame" Tag="5" Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
                     </Grid>
                     <Grid Margin="10 0 10 0">
 
@@ -189,7 +179,7 @@
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon Grid.Column="0" Kind="Truck" Foreground="#FF939393" VerticalAlignment="Center" >
                         </materialDesign:PackIcon>
-                        <Button Content="Поставщики" Click="NavigateToFrame" Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
+                        <Button Content="Поставщики" Click="NavigateToFrame" Tag="4" Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
                     </Grid>
                     <Grid Margin="10 0 10 0">
 
@@ -199,7 +189,7 @@
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon Grid.Column="0" Kind="AccountGroup" Foreground="#FF939393" VerticalAlignment="Center" >
                         </materialDesign:PackIcon>
-                        <Button Content="Клиенты" Click="NavigateToFrame"  Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
+                        <Button Content="Клиенты" Click="NavigateToFrame" Tag="7"  Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
                     </Grid>
                     <Grid Margin="10 0 10 0">
 
@@ -209,7 +199,7 @@
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon Grid.Column="0" Kind="Printer" Foreground="#FF939393" VerticalAlignment="Center" >
                         </materialDesign:PackIcon>
-                        <Button Content="Документы" Click="NavigateToFrame"  Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
+                        <Button Content="Документы" Tag="6" Click="NavigateToFrame"  Grid.Column="1" Style="{StaticResource menuBtn}"  ></Button>
                     </Grid>
 
 
@@ -226,11 +216,14 @@
 
             </Grid>
 
-
+            
             <Border Grid.Column="1" Grid.Row="1">
 
 
-                <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"></Frame>
+                <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden">
+                    
+                    
+                </Frame>
 
 
             </Border>

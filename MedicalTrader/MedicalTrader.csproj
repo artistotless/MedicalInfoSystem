@@ -17,6 +17,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,9 +30,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,6 +53,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>medicine_icon-icons.com_66070.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotNetZip, Version=1.15.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
@@ -91,6 +95,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.SQLite, Version=1.0.114.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
@@ -129,6 +134,12 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Document.NET, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocX.1.8.0\lib\net40\Xceed.Document.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Words.NET, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocX.1.8.0\lib\net40\Xceed.Words.NET.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -138,12 +149,20 @@
     <Compile Include="Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BackGroundEvents.cs" />
-    <Compile Include="BuyerLicense.cs" />
+    <Compile Include="dbClasses\Counterfeit.cs" />
+    <Compile Include="frames\OfferAddPage.xaml.cs">
+      <DependentUpon>OfferAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="helpers\DrugOffer.cs" />
+    <Compile Include="helpers\NavigateFrame.cs" />
+    <Compile Include="helpers\OfferDocument.cs" />
+    <Compile Include="other\BackGroundEvents.cs" />
+    <Compile Include="other\BuyerLicense.cs" />
     <Compile Include="CustomWindow.xaml.cs">
       <DependentUpon>CustomWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="dbClasses\Client.cs" />
+    <Compile Include="dbClasses\RegistryCounterfeit.cs" />
     <Compile Include="dbClasses\Document.cs" />
     <Compile Include="dbClasses\FarmGroup.cs" />
     <Compile Include="dbClasses\GrlsDrug.cs" />
@@ -158,11 +177,14 @@
     <Compile Include="frames\ClientsPage.xaml.cs">
       <DependentUpon>ClientsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="frames\MedicalItemsAddPage.xaml.cs">
-      <DependentUpon>MedicalItemsAddPage.xaml</DependentUpon>
+    <Compile Include="frames\CounterfeitsPage.xaml.cs">
+      <DependentUpon>CounterfeitsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="frames\MedicalItemsEditPage.xaml.cs">
-      <DependentUpon>MedicalItemsEditPage.xaml</DependentUpon>
+    <Compile Include="frames\DrugsAddPage.xaml.cs">
+      <DependentUpon>DrugsAddPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="frames\DrugsEditPage.xaml.cs">
+      <DependentUpon>DrugsEditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="frames\UnitPage.xaml.cs">
       <DependentUpon>UnitPage.xaml</DependentUpon>
@@ -176,7 +198,11 @@
     <Compile Include="frames\WarehousesAddPage.xaml.cs">
       <DependentUpon>WarehousesAddPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="other\IExcelable.cs" />
     <Compile Include="other\Role.cs" />
+    <Compile Include="uiElements\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="uiElements\warehouseInfo.xaml.cs">
       <DependentUpon>warehouseInfo.xaml</DependentUpon>
     </Compile>
@@ -186,14 +212,14 @@
     <Compile Include="frames\DocumentsPage.xaml.cs">
       <DependentUpon>DocumentsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="helpers\CheckerLicense.cs" />
+    <Compile Include="helpers\RosZdravNadzor.cs" />
     <Compile Include="helpers\ExcelReader.cs" />
     <Compile Include="helpers\GRLPService.cs" />
     <Compile Include="helpers\Settings.cs" />
     <Compile Include="helpers\ZipWrapper.cs" />
-    <Compile Include="LicenceApiParameters.cs" />
-    <Compile Include="frames\MedicalItemsPage.xaml.cs">
-      <DependentUpon>MedicalItemsPage.xaml</DependentUpon>
+    <Compile Include="other\RequestParameters.cs" />
+    <Compile Include="frames\DrugsPage.xaml.cs">
+      <DependentUpon>DrugsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="frames\PlanningPage .xaml.cs">
       <DependentUpon>PlanningPage .xaml</DependentUpon>
@@ -223,6 +249,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="frames\OfferAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="frames\ClientsAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,15 +261,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="frames\CounterfeitsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="frames\DocumentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="frames\MedicalItemsAddPage.xaml">
+    <Page Include="frames\DrugsAddPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="frames\MedicalItemsEditPage.xaml">
+    <Page Include="frames\DrugsEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -256,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="frames\WarehousesAddPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="uiElements\Page1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,7 +314,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="frames\MedicalItemsPage.xaml">
+    <Page Include="frames\DrugsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -347,7 +385,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="medicine_icon-icons.com_66070.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

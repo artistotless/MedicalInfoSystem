@@ -1,19 +1,12 @@
 ﻿using MaterialDesignThemes.Wpf;
 using MedicalTrader.uiElements;
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace MedicalTrader
 {
@@ -26,11 +19,6 @@ namespace MedicalTrader
         {
             InitializeComponent();
             InitWhList();
-
-
-
-
-
         }
         void InitWhList()
         {
@@ -53,7 +41,7 @@ namespace MedicalTrader
         {
             BackGroundEvents.ShowLoading("Обновление списка складов...");
             var whArray = DBConnector.Db().Warehouses.ToList();
-            if (whArray.Count <= 0) { return; }
+            if (whArray.Count <= 0) { BackGroundEvents.HideLoading(); return; }
             whList.Children.Clear();
             InitWhList();
             BackGroundEvents.HideLoading();
@@ -81,27 +69,63 @@ namespace MedicalTrader
             }
             foreach (var item in willdeleted)
             {
-                whList.Children.Remove(item);
+                item.Visibility = Visibility.Collapsed;
             }
 
-
         }
-
-
-
-
-
 
         private void Chip_DeleteClick(object sender, RoutedEventArgs e)
         {
 
-            whList.Children.Clear();
-            InitWhList();
+            foreach (warehouseItem item in whList.Children)
+            {
+                item.Visibility = Visibility.Visible;
+            }
             toolbarWHs.Items.Remove(sender);
 
             return;
         }
-
-
     }
 }
+
+
+//private void SearchForTableWareHouses(object sender, RoutedEventArgs e)
+//{
+//    var query = SearchField.Text;
+
+//    if (string.IsNullOrEmpty(query)) { return; }
+//    var chip = new Chip() { IsDeletable = true, Content = query };
+//    chip.DeleteClick += Chip_DeleteClick;
+//    toolbarWHs.Items.Add(chip);
+//    List<warehouseItem> willdeleted = new List<warehouseItem>();
+
+//    foreach (warehouseItem item in whList.Children)
+//    {
+//        var q = item.title.Text != null ? item.title.Text : string.Empty;
+//        if (!(q.ToUpper().Contains(query.ToUpper())))
+//        {
+//            willdeleted.Add(item);
+
+//        }
+
+//    }
+//    foreach (var item in willdeleted)
+//    {
+//        whList.Children.Remove(item);
+//    }
+
+
+//}
+
+
+//private void Chip_DeleteClick(object sender, RoutedEventArgs e)
+//{
+
+//    whList.Children.Clear();
+//    InitWhList();
+//    toolbarWHs.Items.Remove(sender);
+
+//    return;
+//}
+
+

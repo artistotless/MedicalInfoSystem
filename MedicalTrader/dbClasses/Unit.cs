@@ -2,7 +2,7 @@
 
 namespace MedicalTrader
 {
-    class Unit
+   public  class Unit
     {
         public int id { get; set; }
         public string name { get; set; }

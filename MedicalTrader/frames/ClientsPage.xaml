@@ -105,7 +105,7 @@
                         <DataGridTemplateColumn MaxWidth="86" >
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button ToolTip="Редактировать" Content="{materialDesign:PackIcon Edit}" DataContext="{Binding Path=id}" Style="{StaticResource MaterialDesignOutlinedButton}" Click="EditSelectedClient"/>
+                                <Button ToolTip="Удалить" materialDesign:RippleAssist.Feedback="#FFE53935" BorderBrush="#FFE53935" Foreground="#FFE53935" Content="{materialDesign:PackIcon TrashCanOutline}" DataContext="{Binding Path=id}" Style="{StaticResource MaterialDesignOutlinedButton}" Click="RemoveSelectedClient"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
 
@@ -131,7 +131,7 @@
                     <DataGridTemplateColumn MaxWidth="86" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button ToolTip="Редактировать" Content="{materialDesign:PackIcon Edit}" DataContext="{Binding Path=id}" Style="{StaticResource MaterialDesignOutlinedButton}" Click="EditSelectedClient"/>
+                                <Button ToolTip="Редактировать" Content="{materialDesign:PackIcon Edit}" DataContext="{Binding Path=id}" Style="{StaticResource MaterialDesignOutlinedButton}" Click="RemoveSelectedClient"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
 

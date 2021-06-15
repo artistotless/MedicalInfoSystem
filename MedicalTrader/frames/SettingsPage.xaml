@@ -13,13 +13,14 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="64px"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="1px"/>
 
 
         </Grid.RowDefinitions>
 
         <StackPanel  Grid.Row="0" Orientation="Horizontal">
             <TextBlock  VerticalAlignment="Center" FontWeight="Light"  Grid.Row="0" Grid.Column="0" FontSize="20" Margin="20" Style="{StaticResource MaterialDesignHeadline4TextBlock}"  Text="Настройки" />
-            <Button  materialDesign:RippleAssist.Feedback="#FF5693EA" Click="NavigateToUsersPage"
+            <Button x:Name="btnUser" materialDesign:RippleAssist.Feedback="#FF5693EA" Click="NavigateToUsersPage"
   Style="{StaticResource MaterialDesignFlatButton}"
 
   Content="Пользователи" Foreground="#FF2F67B8" />
@@ -29,8 +30,8 @@
  
   Content="Единицы измерения" Foreground="#FF2F67B8" Background="Transparent" />
         </StackPanel>
-   
 
+        
         <Frame Grid.Row="1" x:Name="SettingsFrame"></Frame>
 
     </Grid>
