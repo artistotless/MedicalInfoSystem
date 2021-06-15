@@ -16,7 +16,7 @@ namespace MedicalTrader
         {
             InitializeComponent();
             tableDocs.Items.Clear();
-            tableDocs.ItemsSource = DBConnector.Db().Drugs.ToList();
+            tableDocs.ItemsSource = DBConnector.Db().Documents.ToList();
 
         }
 
